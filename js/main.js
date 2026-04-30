@@ -251,10 +251,10 @@ document.addEventListener('DOMContentLoaded', () => {
       new Chart(sectorCtx, {
         type: 'doughnut',
         data: {
-          labels: ['صناعي وبترولي', 'نقل ومواصلات', 'موانئ وبحري', 'سكني وتجاري'],
+          labels: ['صناعي وبترولي', 'نقل ومواصلات', 'موانئ وبحري', 'سكني وتجاري', 'طاقة وكهرباء', 'زراعي وحرق مخلفات'],
           datasets: [{
-            data: [48, 27, 14, 11],
-            backgroundColor: ['#10b981', '#06b6d4', '#f59e0b', '#64748b'],
+            data: [38, 22, 16, 11, 9, 4],
+            backgroundColor: ['#10b981', '#06b6d4', '#f59e0b', '#64748b', '#8b5cf6', '#ef4444'],
             borderWidth: 2,
             borderColor: 'rgba(15,23,42,0.8)'
           }]
@@ -281,10 +281,10 @@ document.addEventListener('DOMContentLoaded', () => {
       new Chart(trendCtx, {
         type: 'line',
         data: {
-          labels: ['2021', '2022', '2023', '2024', '2025', '2026'],
+          labels: ['2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026 (توقع)'],
           datasets: [{
             label: 'انبعاثات CO2 (ألف طن)',
-            data: [18.2, 17.5, 16.8, 16.2, 15.8, 15.4],
+            data: [21.4, 19.8, 18.2, 17.5, 16.8, 16.2, 15.5, 14.9],
             borderColor: '#10b981',
             backgroundColor: 'rgba(16, 185, 129, 0.08)',
             fill: true,
@@ -321,12 +321,18 @@ document.addEventListener('DOMContentLoaded', () => {
   // 8) Leaflet Map + Hotspots (API)
   // -----------------------------
   const defaultHotspots = [
-    { lat: 31.2156, lng: 29.9553, intensity: 0.95, name: 'ميناء الإسكندرية (تلوث بحري وصناعي)',   co2: 4850, aqi: 187 },
-    { lat: 31.1328, lng: 29.7997, intensity: 0.88, name: 'منطقة برج العرب الصناعية (عوادم مصانع)', co2: 4200, aqi: 172 },
-    { lat: 31.2333, lng: 29.9667, intensity: 0.65, name: 'محطة الرمل (كثافة مرورية عالية)',          co2: 2100, aqi: 128 },
-    { lat: 31.2667, lng: 30.0167, intensity: 0.28, name: 'حدائق المنتزه (متنفس طبيعي - هواء نقي)',  co2:  320, aqi:  42 },
-    { lat: 31.1500, lng: 29.9000, intensity: 0.78, name: 'منطقة العامرية (نشاط تكرير البترول)',      co2: 3100, aqi: 155 },
-    { lat: 31.3167, lng: 30.0667, intensity: 0.42, name: 'أبو قير (تلوث حراري متوسط)',               co2:  980, aqi:  88 }
+    { lat: 31.2156, lng: 29.9553, intensity: 0.95, name: 'ميناء الإسكندرية الرئيسي (تلوث بحري وبترولي)',    co2: 5800, aqi: 195 },
+    { lat: 31.1328, lng: 29.7997, intensity: 0.91, name: 'برج العرب الصناعية (مصانع أسمدة وبتروكيماويات)', co2: 5200, aqi: 183 },
+    { lat: 31.1500, lng: 29.9000, intensity: 0.85, name: 'منطقة العامرية (تكرير البترول والصناعات الثقيلة)',  co2: 4600, aqi: 171 },
+    { lat: 31.1650, lng: 29.8600, intensity: 0.82, name: 'الكيلو 21 - طريق القاهرة (مصانع الكيماويات)',       co2: 3900, aqi: 162 },
+    { lat: 31.2100, lng: 29.9800, intensity: 0.78, name: 'منطقة الدخيلة الصناعية والميناء الغربي',           co2: 3500, aqi: 154 },
+    { lat: 31.2333, lng: 29.9667, intensity: 0.68, name: 'محطة الرمل وسط الإسكندرية (كثافة مرورية عالية)', co2: 2400, aqi: 135 },
+    { lat: 31.2050, lng: 30.0200, intensity: 0.62, name: 'مصنع كيما - شرق الإسكندرية',                      co2: 2100, aqi: 124 },
+    { lat: 31.3167, lng: 30.0667, intensity: 0.58, name: 'أبو قير (محطة كهرباء + صناعة حرارية)',             co2: 1850, aqi: 116 },
+    { lat: 31.2500, lng: 29.9200, intensity: 0.45, name: 'حي المنشية (احتقان مروري + انبعاثات محلية)',       co2: 1100, aqi:  94 },
+    { lat: 31.2000, lng: 30.0500, intensity: 0.38, name: 'مصيف سيدي بشر (تلوث صوتي وحراري موسمي)',          co2:  750, aqi:  78 },
+    { lat: 31.2800, lng: 30.0100, intensity: 0.22, name: 'الشريط الساحلي - كورنيش أبو قير (هواء نسبي)',     co2:  380, aqi:  52 },
+    { lat: 31.2667, lng: 30.0167, intensity: 0.15, name: 'حدائق المنتزه الملكية (متنفس أخضر - هواء نقي)',   co2:  180, aqi:  32 }
   ];
 
   let currentHotspots = [];
@@ -387,7 +393,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { attribution: '© OpenStreetMap contributors', maxZoom: 19 }
     );
 
-    map = L.map('map', { center: alexandriaCoords, zoom: 11, layers: [satelliteLayer], zoomControl: true });
+    map = L.map('map', { center: alexandriaCoords, zoom: 12, layers: [satelliteLayer], zoomControl: true });
     // إصلاح تأخر تحميل الخريطة على الموبايل
     setTimeout(() => map.invalidateSize(), 300);
     const layerControl = L.control.layers({ 'القمر الصناعي (ESRI)': satelliteLayer, 'شبكة الطرق (OSM)': osmRoadsLayer }).addTo(map);
@@ -596,8 +602,9 @@ document.addEventListener('DOMContentLoaded', () => {
       // fallback local (للـ demo offline)
       const local = JSON.parse(localStorage.getItem('gisPosts') || 'null');
       const demo = Array.isArray(local) ? local : [
-        { id: 1, title: 'بدء المرحلة الثانية من الرصد', date: new Date('2026-04-20').toISOString(), content: 'تم إطلاق المرحلة الثانية من جمع البيانات المكانية وتحليل بؤر الانبعاثات في المناطق الصناعية.' },
-        { id: 2, title: 'نتائج تحليل منطقة برج العرب', date: new Date('2026-04-15').toISOString(), content: 'أظهرت الخرائط الحرارية ارتفاعاً ملحوظاً في نسبة CO2 بمنطقة برج العرب الصناعية بنسبة 12% عن العام الماضي.' }
+        { id: 1, title: 'رصد ارتفاع حاد في انبعاثات منطقة برج العرب', date: new Date('2026-04-25').toISOString(), content: 'رصدت الخرائط الحرارية المحدثة ارتفاعاً بنسبة 14% في انبعاثات CO2 بمنطقة برج العرب الصناعية مقارنة بالربع الأول من 2025، ويُعزى ذلك لزيادة طاقة مصانع الأسمدة والبتروكيماويات.' },
+        { id: 2, title: 'تقرير: ميناء الإسكندرية الأعلى تلوثاً بالمحافظة', date: new Date('2026-04-18').toISOString(), content: 'أكد التحليل المكاني الجديد أن منطقة الميناء تتصدر قائمة البؤر الانبعاثية بـ 5,800 طن CO2 سنوياً، مع مؤشر AQI خطير يبلغ 195 نقطة.' },
+        { id: 3, title: 'مبادرة التشجير تخفض AQI في المنتزه بنسبة 8%', date: new Date('2026-04-10').toISOString(), content: 'أسفرت مبادرة تشجير الحدائق والكورنيش عن انخفاض ملموس في مؤشر جودة الهواء AQI بمنطقتي المنتزه وأبو قير.' }
       ];
       renderPosts(demo);
     }
