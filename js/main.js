@@ -2,7 +2,7 @@
  * main.js (Patched)
  * - ربط الموقع مع Backend API (Express)
  * - استبدال localStorage/Hardcoded admin بمنطق JWT
- * - إصلاح أخطاء منطقية/تركيبية كانت تمنع التشغيل
+ * - إصلاح fأخطاء منطقية/تركيبية كانت تمنع التشغيل
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -87,10 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
     AOS.init({ duration: 800, easing: 'ease-in-out', once: true, offset: 100 });
   }
 
-  window.addEventListener('load', () => {
-    toggleLoader(false);
-    document.body.classList.remove('loading');
-  });
+  const hideLoader = () => {    toggleLoader(false);    document.body.classList.remove('loading');  };  if (document.readyState === 'complete') {    hideLoader();  } else {    window.addEventListener('load', hideLoader);  }
 
   // -----------------------------
   // 3) Navbar + Progress + BackToTop
@@ -836,5 +833,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-
+  const hideLoader = () => {
+        toggleLoader(false);
+        document.body.classList.remove('loading');
+  };
+    if (document.readyState === 'complete') {
+          hideLoader();
+    } else {
+          window.addEventListener('load', hideLoader);
+    }
+  
 });
