@@ -371,6 +371,9 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const fetchHotspots = async () => {
+    // كود لحذف البيانات القديمة من متصفح المستخدم تلقائياً
+    localStorage.removeItem('gisHotspots');
+    
     try {
       const data = await apiFetch('/api/hotspots');
       return Array.isArray(data) ? data.map(normalizeHotspot) : [];
