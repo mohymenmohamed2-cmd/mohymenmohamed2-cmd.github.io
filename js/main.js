@@ -87,10 +87,16 @@ document.addEventListener('DOMContentLoaded', () => {
     AOS.init({ duration: 800, easing: 'ease-in-out', once: true, offset: 100 });
   }
 
-  window.addEventListener('load', () => {
+  const hideLoader = () => {
     toggleLoader(false);
     document.body.classList.remove('loading');
-  });
+  };
+  
+  if (document.readyState === 'complete') {
+    hideLoader();
+  } else {
+    window.addEventListener('load', hideLoader);
+  }
 
   // -----------------------------
   // 3) Navbar + Progress + BackToTop
@@ -321,18 +327,18 @@ document.addEventListener('DOMContentLoaded', () => {
   // 8) Leaflet Map + Hotspots (API)
   // -----------------------------
   const defaultHotspots = [
-    { lat: 31.2156, lng: 29.9553, intensity: 0.95, name: 'ميناء الإسكندرية الرئيسي (تلوث بحري وبترولي)',    co2: 5800, aqi: 195 },
-    { lat: 31.1328, lng: 29.7997, intensity: 0.91, name: 'برج العرب الصناعية (مصانع أسمدة وبتروكيماويات)', co2: 5200, aqi: 183 },
-    { lat: 31.1500, lng: 29.9000, intensity: 0.85, name: 'منطقة العامرية (تكرير البترول والصناعات الثقيلة)',  co2: 4600, aqi: 171 },
-    { lat: 31.1650, lng: 29.8600, intensity: 0.82, name: 'الكيلو 21 - طريق القاهرة (مصانع الكيماويات)',       co2: 3900, aqi: 162 },
-    { lat: 31.2100, lng: 29.9800, intensity: 0.78, name: 'منطقة الدخيلة الصناعية والميناء الغربي',           co2: 3500, aqi: 154 },
-    { lat: 31.2333, lng: 29.9667, intensity: 0.68, name: 'محطة الرمل وسط الإسكندرية (كثافة مرورية عالية)', co2: 2400, aqi: 135 },
-    { lat: 31.2050, lng: 30.0200, intensity: 0.62, name: 'مصنع كيما - شرق الإسكندرية',                      co2: 2100, aqi: 124 },
-    { lat: 31.3167, lng: 30.0667, intensity: 0.58, name: 'أبو قير (محطة كهرباء + صناعة حرارية)',             co2: 1850, aqi: 116 },
-    { lat: 31.2500, lng: 29.9200, intensity: 0.45, name: 'حي المنشية (احتقان مروري + انبعاثات محلية)',       co2: 1100, aqi:  94 },
-    { lat: 31.2000, lng: 30.0500, intensity: 0.38, name: 'مصيف سيدي بشر (تلوث صوتي وحراري موسمي)',          co2:  750, aqi:  78 },
-    { lat: 31.2800, lng: 30.0100, intensity: 0.22, name: 'الشريط الساحلي - كورنيش أبو قير (هواء نسبي)',     co2:  380, aqi:  52 },
-    { lat: 31.2667, lng: 30.0167, intensity: 0.15, name: 'حدائق المنتزه الملكية (متنفس أخضر - هواء نقي)',   co2:  180, aqi:  32 }
+    { lat: 31.1820, lng: 29.8630, intensity: 0.95, name: 'محطة تحيا مصر (ميناء الإسكندرية - تلوث بحري)', co2: 5800, aqi: 195 },
+    { lat: 31.1180, lng: 29.8040, intensity: 0.92, name: 'شركة عز الدخيلة للصلب (صناعات ثقيلة)', co2: 5400, aqi: 185 },
+    { lat: 31.0980, lng: 29.8660, intensity: 0.88, name: 'شركة ميدور (تكرير البترول)', co2: 4800, aqi: 175 },
+    { lat: 31.1410, lng: 29.8370, intensity: 0.85, name: 'شركة الإسكندرية لأسمنت بورتلاند (انبعاثات غبار وCO2)', co2: 4600, aqi: 170 },
+    { lat: 31.0430, lng: 29.6580, intensity: 0.82, name: 'محطة كهرباء سيدي كرير 3 و 4 (حرق وقود أحفوري)', co2: 4200, aqi: 165 },
+    { lat: 31.1870, lng: 29.8730, intensity: 0.78, name: 'ترسانة الإسكندرية البحرية (صيانة وسفن)', co2: 3800, aqi: 155 },
+    { lat: 31.1380, lng: 29.8480, intensity: 0.75, name: 'الإسكندرية للتكرير والبتروكيماويات (ANRPC)', co2: 3500, aqi: 145 },
+    { lat: 31.0080, lng: 29.8420, intensity: 0.72, name: 'شركة البتروكيماويات المصرية (كيماويات دقيقة)', co2: 3200, aqi: 140 },
+    { lat: 31.2150, lng: 29.9960, intensity: 0.65, name: 'محطة كهرباء السيوف (شرق الإسكندرية)', co2: 2800, aqi: 130 },
+    { lat: 31.1380, lng: 29.8310, intensity: 0.60, name: 'شركة مصر لصناعة الكيماويات (مصانع المكس)', co2: 2400, aqi: 120 },
+    { lat: 31.1270, lng: 29.8310, intensity: 0.55, name: 'شركة المكس للملاحات (منطقة صناعية)', co2: 2100, aqi: 110 },
+    { lat: 31.2230, lng: 29.9940, intensity: 0.40, name: 'مصنع بسكو مصر (صناعات غذائية خفيفة)', co2: 1200, aqi: 85 }
   ];
 
   let currentHotspots = [];
