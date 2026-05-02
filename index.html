@@ -284,7 +284,6 @@
     <!-- Updates Section -->
     <section id="updates-section" class="section">
         <div class="container">
-            <div class="section-title" data-aos="fade-up">
                 <h2><i class="fa-solid fa-rss neon-text"></i> النشرات وتقارير الرصد</h2>
             </div>
             <div id="posts-container" class="posts-grid" data-aos="fade-up">
@@ -293,6 +292,9 @@
             </div>
         </div>
     </section>
+
+
+
 
     <!-- Footer -->
     <footer>
@@ -306,24 +308,29 @@
             </div>
             <p>&copy; 2026 مشروع تخرج الإسكندرية - مساحة و خرائط. جميع الحقوق محفوظة.</p>
 
+
+
+
             <!-- Team Section -->
             <div class="team-section" style="margin-top: 20px;">
-                <p class="team-label" style="font-size:0.85rem; letter-spacing:2px; text-transform:uppercase; color: var(--text-muted); margin-bottom: 14px;">
-                    <i class="fa-solid fa-users" style="margin-left:6px; color: var(--neon-green);"></i> انتاج الفريق
-                </p>
+                <p class="team-label" style="font-size:0.85rem; letter-spacing:2px; text-transform:uppercase; color: var(--neon-green); margin-bottom: 14px;">
+                    <i class="fa-solid fa-users" style="margin-left:6px; color: var(--neon-green);"></i> Project Team</p>
                 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;">
-                    <div class="team-member-chip"><i class="fa-solid fa-user-astronaut"></i> Mohymen Mohamed Abdelrazek</div>
-                    <div class="team-member-chip"><i class="fa-solid fa-user-astronaut"></i> Ahmed Mohamed Khalil</div>
-                    <div class="team-member-chip"><i class="fa-solid fa-user-astronaut"></i> Mariam Adel Mahrous</div>
-                    <div class="team-member-chip"><i class="fa-solid fa-user-astronaut"></i> Raghad Alaa Eldin Elsayed Ahmed</div>
-                    <div class="team-member-chip"><i class="fa-solid fa-user-astronaut"></i> Khadija Nagi Abdelnabi</div>
-                    <div class="team-member-chip"><i class="fa-solid fa-user-astronaut"></i> Samaa Mohamed Galal</div>
+                    <div class="team-member-chip"><i class="fa-solid fa-user-astronaut"></i> Mohymen Mohamed</div>
+                    <div class="team-member-chip"><i class="fa-solid fa-user-astronaut"></i> Ahmed Mohamed</div>
+                    <div class="team-member-chip"><i class="fa-solid fa-user-astronaut"></i> Mariam Adel</div>
+                    <div class="team-member-chip"><i class="fa-solid fa-user-astronaut"></i> Raghad Alaa</div>
+                    <div class="team-member-chip"><i class="fa-solid fa-user-astronaut"></i> Khadija Nagi</div>
+                    <div class="team-member-chip"><i class="fa-solid fa-user-astronaut"></i> Samaa Mohamed</div>
                 </div>
                 <a href="#" id="admin-trigger" title="إدارة النظام" style="display:block; margin-top:12px;">
-                    <i class="fa-solid fa-shield-halved" style="font-size: 0.8rem; color: var(--text-muted);"></i>
+                    <i class="fa-solid fa-shield-halved" style="font-size: 0.8rem; color: var(--neon-green);"></i>
                 </a>
             </div>        </div>
     </footer>
+
+
+
 
     <!-- Admin Modal -->
     <div id="admin-modal" class="modal">
@@ -331,7 +338,7 @@
             <span class="close-modal">&times;</span>
             <div id="login-step">
                 <h3 class="gradient-text"><i class="fa-solid fa-terminal"></i> الدخول الآمن للنظام</h3>
-                <p style="color: var(--text-muted);">الرجاء إدخال بيانات التفويض للوصول المباشر لقاعدة البيانات</p>
+                <p style="color: var(--neon-green);">الرجاء إدخال بيانات التفويض للوصول المباشر لقاعدة البيانات</p>
                 <input type="text" id="admin-username" placeholder="مُعرف المستخدم..." class="form-input dark-input">
                 <input type="password" id="admin-password" placeholder="مفتاح التشفير..." class="form-input dark-input">
                 <button id="login-btn" class="form-btn neon-btn">توثيق الدخول</button>
@@ -349,32 +356,3 @@
                     <input type="text" id="post-title" placeholder="عنوان التقرير" class="form-input dark-input">
                     <textarea id="post-content" placeholder="اكتب التفاصيل والملاحظات..." class="form-input dark-input" rows="4"></textarea>
                     <button id="publish-btn" class="form-btn neon-btn">إدراج في قاعدة البيانات</button>
-                </div>
-
-                <div id="form-hotspot" style="display: none;">
-                    <h3>إضافة نقطة انبعاثات مكانية</h3>
-                    <input type="text" id="hotspot-name" placeholder="الاسم (مثال: ميناء الإسكندرية)" class="form-input dark-input">
-                    <div style="display: flex; gap: 10px;">
-                        <input type="number" id="hotspot-lat" placeholder="خط العرض (Latitude)" class="form-input dark-input" step="any">
-                        <input type="number" id="hotspot-lng" placeholder="خط الطول (Longitude)" class="form-input dark-input" step="any">
-                    </div>
-                    <input type="number" id="hotspot-intensity" placeholder="مؤشر الانبعاث (0.0 إلى 1.0)" class="form-input dark-input" step="0.1" min="0" max="1">
-                    <button id="add-hotspot-btn" class="form-btn neon-btn">حقن البيانات بالخريطة</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-    <!-- AOS JS -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
-    <!-- API Base URL -->
-    <script>
-        window.API_BASE = 'https://carbon-backend-v11.vercel.app';
-    </script>
-    <!-- Custom JS -->
-    <script src="js/main.js?v=4"></script>
-</body>
-</html>
