@@ -3,27 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>البصمة الكربونية | نظام مراقبة الانبعاثات - الإسكندرية</title>
-    
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L155D6NTZ6"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-L155D6NTZ6');
-    </script>
+    <title>Alexandria Carbon Footprint | نظام مراقبة الانبعاثات - الإسكندرية</title>
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="منصة متطورة لتحليل انبعاثات الكربون في الإسكندرية باستخدام نظم المعلومات الجغرافية (GIS). رصد لحظي، تقارير تحليلية، وخرائط تفاعلية لدعم الاستدامة البيئية.">
-    <meta name="keywords" content="GIS, الإسكندرية, البصمة الكربونية, تلوث الهواء, استدامة, بيئة, مصر, رصد بيئي">
+    <meta name="description" content="Alexandria Carbon Footprint - Frontend: منصة متطورة لتحليل انبعاثات الكربون في الإسكندرية باستخدام نظم المعلومات الجغرافية (GIS).">
+    <meta name="keywords" content="GIS, Alexandria Carbon Footprint, الإسكندرية, البصمة الكربونية, تلوث الهواء, استدامة, بيئة, مصر, رصد بيئي">
     <meta name="author" content="مهيمن محمد">
     
     <!-- OpenGraph Tags -->
-    <meta property="og:title" content="البصمة الكربونية - نظام مراقبة الانبعاثات">
+    <meta property="og:title" content="Alexandria Carbon Footprint - نظام مراقبة الانبعاثات">
     <meta property="og:description" content="تحليل مكاني دقيق لانبعاثات الكربون في الإسكندرية باستخدام تقنيات GIS المتقدمة.">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://Alexandria-Carbon-cmd.github.io/Alexandria-Carbon-cmd.github.io/">
+    <link rel="canonical" href="https://Alexandria-Carbon-cmd.github.io/Alexandria-Carbon-cmd.github.io/">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,7 +44,7 @@
     <!-- Navbar -->
     <nav class="navbar glass-effect" id="main-navbar">
         <div class="container nav-content">
-            <div class="logo"><i class="fa-solid fa-earth-africa neon-text"></i> البصمة الكربونية</div>
+            <div class="logo"><i class="fa-solid fa-earth-africa neon-text"></i> Alexandria Carbon Footprint</div>
             <ul class="nav-links" id="nav-links">
                 <li><a href="#home" class="nav-link">الرئيسية</a></li>
                 <li><a href="#idea" class="nav-link">الفكرة</a></li>
@@ -102,7 +94,7 @@
                 <div class="idea-card glass-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="icon-box"><i class="fa-solid fa-layer-group"></i></div>
                     <h3>النمذجة المكانية</h3>
-                    <p>استخدام أدوات التحليل المكاني المتقدمة لإنشاء طبقات رقمية تعكس الوضع البيئي الحالي.</p>
+                    <p>استخدام أدوات التحليل المكانية المتقدمة لإنشاء طبقات رقمية تعكس الوضع البيئي الحالي.</p>
                 </div>
                 <div class="idea-card glass-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="icon-box"><i class="fa-solid fa-leaf"></i></div>
@@ -177,26 +169,6 @@
         </div>
     </section>
 
-    <!-- Analytics Section [NEW] -->
-    <section id="analytics-section" class="section bg-darker">
-        <div class="container">
-            <div class="section-title" data-aos="fade-up">
-                <h2><i class="fa-solid fa-chart-line neon-text"></i> التحليل الزمني والمكاني</h2>
-                <p>مقارنة مستويات الانبعاثات وتوقعات الاتجاهات المستقبلية</p>
-            </div>
-            <div class="analytics-grid">
-                <div class="chart-container glass-card neon-border" data-aos="fade-right">
-                    <h3>توزيع الانبعاثات حسب القطاع</h3>
-                    <canvas id="sectorChart"></canvas>
-                </div>
-                <div class="chart-container glass-card neon-border" data-aos="fade-left">
-                    <h3>التوجه السنوي للانبعاثات (تقديري)</h3>
-                    <canvas id="trendChart"></canvas>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Interactive Map Section -->
     <section id="map-section" class="section map-bg">
         <div class="container">
@@ -218,153 +190,31 @@
         </div>
     </section>
 
-    <!-- Data Table Section -->
-    <section id="data-table-section" class="section">
-        <div class="container">
-            <div class="section-title" data-aos="fade-up">
-                <h2><i class="fa-solid fa-table-list neon-text"></i> السجل التحليلي لانبعاثات المناطق</h2>
-                <p>تفاصيل القراءات المكانية للبصمة الكربونية في الإسكندرية</p>
-            </div>
-            <!-- Filter & Export Bar -->
-            <div class="table-controls">
-                <div class="filter-btns">
-                    <button class="filter-btn active" data-filter="all">الكل</button>
-                    <button class="filter-btn" data-filter="high"><span class="dot red"></span> عالي</button>
-                    <button class="filter-btn" data-filter="medium"><span class="dot orange"></span> متوسط</button>
-                    <button class="filter-btn" data-filter="low"><span class="dot green-d"></span> منخفض</button>
-                </div>
-                <button id="export-csv-btn" class="export-btn"><i class="fa-solid fa-download"></i> تصدير CSV</button>
-            </div>
-            <p class="table-hint"><i class="fa-solid fa-circle-info"></i> اضغط على أي صف لعرض الموقع على الخريطة التفاعلية</p>
-            <div class="table-container glass-card neon-border" data-aos="fade-up" data-aos-delay="100">
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>المنطقة / البؤرة</th>
-                            <th>مؤشر الانبعاث</th>
-                            <th>انبعاثات CO2 (طن/سنة)</th>
-                            <th>جودة الهواء (AQI)</th>
-                            <th>الموقع</th>
-                        </tr>
-                    </thead>
-                    <tbody id="hotspots-table-body">
-                        <!-- Populated by JS -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-
-    <!-- Importance Section -->
-    <section id="importance" class="section bg-darker">
-        <div class="container">
-            <div class="section-title" data-aos="fade-up">
-                <h2><i class="fa-solid fa-rocket neon-text"></i> أهمية المشروع والمخرجات</h2>
-            </div>
-            <div class="idea-content">
-                <div class="idea-card glass-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="icon-box"><i class="fa-solid fa-satellite"></i></div>
-                    <h3>التكنولوجيا والبيئة</h3>
-                    <p>يربط بين التقنية الحديثة والبيئة بشكل عملي لدعم التحول نحو مدن ذكية ومستدامة.</p>
-                </div>
-                <div class="idea-card glass-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="icon-box"><i class="fa-solid fa-chart-line"></i></div>
-                    <h3>صناعة القرار</h3>
-                    <p>أداة تحليلية لصناع القرار، وخرائط رقمية دقيقة للمساهمة في تحقيق أهداف التنمية المستدامة.</p>
-                </div>
-                <div class="idea-card glass-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="icon-box"><i class="fa-solid fa-microchip"></i></div>
-                    <h3>الرؤية المستقبلية</h3>
-                    <p>دمج أنظمة المراقبة اللحظية والذكاء الاصطناعي للتنبؤ بالتلوث، وإنشاء منصات تفاعلية.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Updates Section -->
-    <section id="updates-section" class="section">
-        <div class="container">
-            <div class="section-title" data-aos="fade-up">
-                <h2><i class="fa-solid fa-rss neon-text"></i> النشرات وتقارير الرصد</h2>
-            </div>
-            <div id="posts-container" class="posts-grid" data-aos="fade-up">
-                <!-- Posts will be generated here by JavaScript -->
-                <div class="empty-state glass-card">يتم جلب البيانات من الخادم... <i class="fa-solid fa-spinner fa-spin"></i></div>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer>
         <div class="container footer-content">
             <div class="footer-logo">
-                <h2><i class="fa-solid fa-earth-africa neon-text"></i> البصمة الكربونية</h2>
-                <p>المنصة الرقمية لتحليل البصمة الكربونية - الإسكندرية</p>
+                <h2><i class="fa-solid fa-earth-africa neon-text"></i> Alexandria Carbon Footprint</h2>
+                <p>المنصة الرقمية لتحليل Alexandria Carbon Footprint - الإسكندرية</p>
             </div>
             <div class="footer-socials">
-                <a href="#" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://github.com/Alexandria-Carbon-cmd/alexandria-carbon-frontend" title="GitHub"><i class="fa-brands fa-github"></i></a>
                 <a href="#" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
                 <a href="#" title="Email"><i class="fa-solid fa-envelope"></i></a>
                 <a href="#" title="ResearchGate"><i class="fa-brands fa-researchgate"></i></a>
             </div>
             <hr class="footer-divider">
             <p>&copy; 2026 مشروع تخرج الإسكندرية GIS. جميع الحقوق محفوظة.</p>
-            <p class="author-name">تصميم وتنفيذ: <strong class="neon-text">مهيمن محمد</strong>&nbsp;
-                <a href="#" id="admin-trigger" title="إدارة النظام"><i class="fa-solid fa-shield-halved" style="font-size: 0.9rem; color: var(--text-muted);"></i></a>
-            </p>
+            <p class="author-name">تصميم وتنفيذ: <strong class="neon-text">مهيمن محمد</strong></p>
         </div>
     </footer>
 
-    <!-- Admin Modal -->
-    <div id="admin-modal" class="modal">
-        <div class="modal-content glass-card neon-border">
-            <span class="close-modal">&times;</span>
-            <div id="login-step">
-                <h3 class="gradient-text"><i class="fa-solid fa-terminal"></i> الدخول الآمن للنظام</h3>
-                <p style="color: var(--text-muted);">الرجاء إدخال بيانات التفويض للوصول المباشر لقاعدة البيانات</p>
-                <input type="text" id="admin-username" placeholder="مُعرف المستخدم..." class="form-input dark-input">
-                <input type="password" id="admin-password" placeholder="مفتاح التشفير..." class="form-input dark-input">
-                <button id="login-btn" class="form-btn neon-btn">توثيق الدخول</button>
-                <p id="login-error" class="error-msg"></p>
-            </div>
-            <div id="post-step" style="display: none;">
-                <div class="admin-tabs">
-                    <button id="tab-post" class="tab-btn active"><i class="fa-solid fa-file-pen"></i> نشر تقرير</button>
-                    <button id="tab-hotspot" class="tab-btn"><i class="fa-solid fa-location-pin"></i> إضافة بؤرة GIS</button>
-                    <button id="logout-btn" class="tab-btn logout"><i class="fa-solid fa-power-off"></i> إنهاء الجلسة</button>
-                </div>
-                
-                <div id="form-post">
-                    <h3>نشر تقرير رصد جديد</h3>
-                    <input type="text" id="post-title" placeholder="عنوان التقرير" class="form-input dark-input">
-                    <textarea id="post-content" placeholder="اكتب التفاصيل والملاحظات..." class="form-input dark-input" rows="4"></textarea>
-                    <button id="publish-btn" class="form-btn neon-btn">إدراج في قاعدة البيانات</button>
-                </div>
-
-                <div id="form-hotspot" style="display: none;">
-                    <h3>إضافة نقطة انبعاثات مكانية</h3>
-                    <input type="text" id="hotspot-name" placeholder="الاسم (مثال: ميناء الإسكندرية)" class="form-input dark-input">
-                    <div style="display: flex; gap: 10px;">
-                        <input type="number" id="hotspot-lat" placeholder="خط العرض (Latitude)" class="form-input dark-input" step="any">
-                        <input type="number" id="hotspot-lng" placeholder="خط الطول (Longitude)" class="form-input dark-input" step="any">
-                    </div>
-                    <input type="number" id="hotspot-intensity" placeholder="مؤشر الانبعاث (0.0 إلى 1.0)" class="form-input dark-input" step="0.1" min="0" max="1">
-                    <button id="add-hotspot-btn" class="form-btn neon-btn">حقن البيانات بالخريطة</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-    <!-- AOS JS -->
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
-    <!-- API Base URL -->
     <script>
         window.API_BASE = 'https://carbon-backend-v11.vercel.app';
     </script>
-    <!-- Custom JS -->
-    <script src="js/main.js?v=4"></script>
+    <script src="js/main.js?v=3"></script>
 </body>
 </html>
