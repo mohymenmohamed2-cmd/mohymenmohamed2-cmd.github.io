@@ -198,7 +198,275 @@
         </div>
     </section>
 
+<<<<<<< HEAD
+    <!-- GIS Analysis Gallery Section -->
+    <section id="gis-analysis" class="section bg-darker">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2><i class="fa-solid fa-map neon-text"></i> موسوعة التحليل المكاني</h2>
+                <p>دراسة جيو-مكانية معمقة باستخدام بيانات الأقمار الصناعية عبر ثلاثة عقود</p>
+            </div>
+
+            <!-- Two-column header -->
+            <div class="analysis-header" data-aos="fade-up">
+                <div class="analysis-method-card glass-card">
+                    <div class="method-icon"><i class="fa-solid fa-user-graduate"></i></div>
+                    <h3>التحليل الجغرافي المعمق</h3>
+                    <p>دراسة ميدانية وبحثية باستخدام برامج GIS المتخصصة (ArcGIS) لاستخلاص المؤشرات البيئية من بيانات الأقمار الصناعية</p>
+                </div>
+                <div class="analysis-vs">VS</div>
+                <div class="analysis-method-card glass-card">
+                    <div class="method-icon"><i class="fa-solid fa-microchip"></i></div>
+                    <h3>النمذجة الرقمية التفاعلية</h3>
+                    <p>تحويل مخرجات التحليل إلى منصة ذكية تفاعلية تعرض البيانات بشكل لحظي وتدعم اتخاذ القرار البيئي</p>
+                </div>
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="analysis-tabs" data-aos="fade-up">
+                <button class="tab-btn active" onclick="switchTab('lst')">
+                    <i class="fa-solid fa-temperature-high"></i> درجة الحرارة
+                </button>
+                <button class="tab-btn" onclick="switchTab('emissions')">
+                    <i class="fa-solid fa-smog"></i> الانبعاثات
+                </button>
+                <button class="tab-btn" onclick="switchTab('ndvi')">
+                    <i class="fa-solid fa-leaf"></i> الغطاء النباتي
+                </button>
+                <button class="tab-btn" onclick="switchTab('landuse')">
+                    <i class="fa-solid fa-city"></i> استخدام الأراضي
+                </button>
+            </div>
+
+            <!-- Tab: LST -->
+            <div id="tab-lst" class="tab-content active" data-aos="fade-up">
+                <p class="tab-description">تُظهر هذه الخرائط تطور ظاهرة الجزر الحرارية الحضرية في الإسكندرية — اللون الأحمر يدل على ارتفاع شديد في الحرارة ناتج عن التوسع العمراني وزيادة الانبعاثات.</p>
+                <div class="maps-grid">
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/درجة حرارة السطح الارض 2005.jpeg" alt="LST 2005" loading="lazy">
+                        <div class="map-card-footer">
+                            <span class="map-year">2005</span>
+                            <span class="map-range">24.5° — 60.1° C</span>
+                        </div>
+                    </div>
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/درجة حرارة السطح الارض 2015.jpeg" alt="LST 2015" loading="lazy">
+                        <div class="map-card-footer">
+                            <span class="map-year">2015</span>
+                            <span class="map-range">26.6° — 57.4° C</span>
+                        </div>
+                    </div>
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/درجة حرارة السطح الارض 2025.jpeg" alt="LST 2025" loading="lazy">
+                        <div class="map-card-footer">
+                            <span class="map-year">2025</span>
+                            <span class="map-range">28.4° — 64.4° C</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Emissions -->
+            <div id="tab-emissions" class="tab-content" data-aos="fade-up">
+                <p class="tab-description">توزيع الغازات الدفيئة المختلفة (CO2e, CH4, N2O) عبر محافظة الإسكندرية — تُجسّد هذه الخرائط الأثر الكربوني التراكمي للنشاط الصناعي والمدني.</p>
+                <div class="maps-grid">
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/carbon_footprint_2005.jpeg" alt="Carbon 2005" loading="lazy">
+                        <div class="map-card-footer"><span class="map-year">البصمة الكربونية 2005</span></div>
+                    </div>
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/carbon_footprint_2015.jpeg" alt="Carbon 2015" loading="lazy">
+                        <div class="map-card-footer"><span class="map-year">البصمة الكربونية 2015</span></div>
+                    </div>
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/carbon_footprint_2025.jpeg" alt="Carbon 2025" loading="lazy">
+                        <div class="map-card-footer"><span class="map-year">البصمة الكربونية 2025</span></div>
+                    </div>
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/co2e_2005.jpeg" alt="CO2e 2005" loading="lazy">
+                        <div class="map-card-footer"><span class="map-year">CO₂e — 2005</span></div>
+                    </div>
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/ch4_2015.jpeg" alt="CH4 2015" loading="lazy">
+                        <div class="map-card-footer"><span class="map-year">CH₄ — 2015</span></div>
+                    </div>
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/n2o_2005.jpeg" alt="N2O" loading="lazy">
+                        <div class="map-card-footer"><span class="map-year">N₂O — 2005</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: NDVI -->
+            <div id="tab-ndvi" class="tab-content" data-aos="fade-up">
+                <p class="tab-description">مؤشر الغطاء النباتي (NDVI) يقيس كثافة النباتات — اللون الأخضر يدل على غطاء نباتي صحي، بينما اللون الأصفر والبني يشير إلى تدهور المساحات الخضراء بسبب التوسع العمراني.</p>
+                <div class="maps-grid">
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/ndvi2005.jpeg" alt="NDVI 2005" loading="lazy">
+                        <div class="map-card-footer"><span class="map-year">NDVI — 2005</span></div>
+                    </div>
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/ndvi2015.jpeg" alt="NDVI 2015" loading="lazy">
+                        <div class="map-card-footer"><span class="map-year">NDVI — 2015</span></div>
+                    </div>
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/ndvi2025.jpeg" alt="NDVI 2025" loading="lazy">
+                        <div class="map-card-footer"><span class="map-year">NDVI — 2025</span></div>
+                    </div>
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/ndbi2005.jpeg" alt="NDBI 2005" loading="lazy">
+                        <div class="map-card-footer"><span class="map-year">NDBI (مؤشر العمران) — 2005</span></div>
+                    </div>
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/ndbl2025.jpeg" alt="NDBI 2025" loading="lazy">
+                        <div class="map-card-footer"><span class="map-year">NDBI (مؤشر العمران) — 2025</span></div>
+                    </div>
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/solar_radiation.jpeg" alt="Solar Radiation" loading="lazy">
+                        <div class="map-card-footer"><span class="map-year">الإشعاع الشمسي</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Land Use -->
+            <div id="tab-landuse" class="tab-content" data-aos="fade-up">
+                <p class="tab-description">خرائط استخدام الأراضي توضح كيف تحولت مساحات شاسعة من الأراضي الزراعية والطبيعية إلى مناطق عمرانية وصناعية على مدار العقود الثلاثة الماضية.</p>
+                <div class="maps-grid">
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/landuse2005.jpeg" alt="Land Use 2005" loading="lazy">
+                        <div class="map-card-footer"><span class="map-year">استخدام الأراضي — 2005</span></div>
+                    </div>
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/landuse2015.jpeg" alt="Land Use 2015" loading="lazy">
+                        <div class="map-card-footer"><span class="map-year">استخدام الأراضي — 2015</span></div>
+                    </div>
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/landuse2025.jpeg" alt="Land Use 2025" loading="lazy">
+                        <div class="map-card-footer"><span class="map-year">استخدام الأراضي — 2025</span></div>
+                    </div>
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/dem_alex.jpeg" alt="DEM Alexandria" loading="lazy">
+                        <div class="map-card-footer"><span class="map-year">نموذج الارتفاع الرقمي (DEM)</span></div>
+=======
+    
+    <!-- GIS Analysis Encyclopedia Section -->
+    <section id="gis-analysis" class="section analysis-bg">
+        <div class="container">
+            <div class="section-title text-center" data-aos="fade-up">
+                <h2><i class="fa-solid fa-layer-group neon-text"></i> موسوعة التحليل المكاني</h2>
+                <p>مقارنة بين التحليل الجغرافي المعمق والنمذجة الرقمية التفاعلية</p>
+            </div>
+
+            <!-- VS Section: Human vs Electronic -->
+            <div class="analysis-header" data-aos="fade-up">
+                <div class="method-card glass-card">
+                    <div class="method-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <h3>التحليل الجغرافي المعمق</h3>
+                    <p>عمل بشري/أكاديمي: دراسة التغير الزمني لجودة الهواء ودرجات الحرارة عبر عقود باستخدام نظم المعلومات الجغرافية (ArcGIS).</p>
+                    <span class="badge">التحقق الميداني</span>
+                </div>
+                <div class="vs-circle">VS</div>
+                <div class="method-card glass-card">
+                    <div class="method-icon"><i class="fa-solid fa-microchip"></i></div>
+                    <h3>النمذجة الرقمية التفاعلية</h3>
+                    <p>نظام رصد إلكتروني: تحويل مخرجات التحليل الجغرافي إلى واجهة رقمية تدعم اتخاذ القرار اللحظي.</p>
+                    <span class="badge">الرصد الذكي</span>
+                </div>
+            </div>
+
+            <!-- Interactive Tabs -->
+            <div class="analysis-tabs glass-card" data-aos="fade-up">
+                <div class="tabs-nav">
+                    <button class="tab-btn active" onclick="openTab(event, 'temp')">🌡️ درجات الحرارة</button>
+                    <button class="tab-btn" onclick="openTab(event, 'emissions')">💨 الانبعاثات الغازية</button>
+                    <button class="tab-btn" onclick="openTab(event, 'vegetation')">🌿 الغطاء النباتي</button>
+                    <button class="tab-btn" onclick="openTab(event, 'landuse')">🏙️ استخدام الأراضي</button>
+                </div>
+
+                <div id="temp" class="tab-content active">
+                    <div class="maps-grid">
+                        <div class="map-item" onclick="openLightbox('img/analysis/درجة حرارة السطح الارض 2005.jpeg', 'درجة حرارة سطح الأرض - 2005')">
+                            <img src="img/analysis/درجة حرارة السطح الارض 2005.jpeg" alt="LST 2005">
+                            <div class="map-info"><span>2005</span> LST Analysis</div>
+                        </div>
+                        <div class="map-item" onclick="openLightbox('img/analysis/درجة حرارة السطح الارض 2015.jpeg', 'درجة حرارة سطح الأرض - 2015')">
+                            <img src="img/analysis/درجة حرارة السطح الارض 2015.jpeg" alt="LST 2015">
+                            <div class="map-info"><span>2015</span> LST Analysis</div>
+                        </div>
+                        <div class="map-item" onclick="openLightbox('img/analysis/درجة حرارة السطح الارض 2025.jpeg', 'درجة حرارة سطح الأرض - 2025')">
+                            <img src="img/analysis/درجة حرارة السطح الارض 2025.jpeg" alt="LST 2025">
+                            <div class="map-info"><span>2025</span> LST Analysis</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="emissions" class="tab-content">
+                    <div class="maps-grid">
+                        <div class="map-item" onclick="openLightbox('img/analysis/carbon_footprint_2025.jpeg', 'بصمة الكربون - 2025')">
+                            <img src="img/analysis/carbon_footprint_2025.jpeg" alt="Carbon">
+                            <div class="map-info">Carbon Footprint</div>
+                        </div>
+                        <div class="map-item" onclick="openLightbox('img/analysis/co2e_2025.jpeg', 'انبعاثات CO2e')">
+                            <img src="img/analysis/co2e_2025.jpeg" alt="CO2e">
+                            <div class="map-info">CO2e Emissions</div>
+                        </div>
+                        <div class="map-item" onclick="openLightbox('img/analysis/ch4_2025.jpeg', 'غاز الميثان CH4')">
+                            <img src="img/analysis/ch4_2025.jpeg" alt="CH4">
+                            <div class="map-info">CH4 Methane</div>
+                        </div>
+                        <div class="map-item" onclick="openLightbox('img/analysis/n2o_2005.jpeg', 'أكسيد النيتروز N2O')">
+                            <img src="img/analysis/n2o_2005.jpeg" alt="N2O">
+                            <div class="map-info">N2O Emissions</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="vegetation" class="tab-content">
+                    <div class="maps-grid">
+                        <div class="map-item" onclick="openLightbox('img/analysis/ndvi2025.jpeg', 'مؤشر الغطاء النباتي NDVI')">
+                            <img src="img/analysis/ndvi2025.jpeg" alt="NDVI">
+                            <div class="map-info">NDVI (Vegetation)</div>
+                        </div>
+                        <div class="map-item" onclick="openLightbox('img/analysis/ndbl2025.jpeg', 'مؤشر الزحف العمراني NDBI')">
+                            <img src="img/analysis/ndbl2025.jpeg" alt="NDBI">
+                            <div class="map-info">NDBI (Urban)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="landuse" class="tab-content">
+                    <div class="maps-grid">
+                        <div class="map-item" onclick="openLightbox('img/analysis/landuse2025.jpeg', 'استخدامات الأراضي')">
+                            <img src="img/analysis/landuse2025.jpeg" alt="Landuse">
+                            <div class="map-info">Land Use 2025</div>
+                        </div>
+                        <div class="map-item" onclick="openLightbox('img/analysis/dem_alex.jpeg', 'النموذج الرقمي للارتفاعات DEM')">
+                            <img src="img/analysis/dem_alex.jpeg" alt="DEM">
+                            <div class="map-info">Digital Elevation</div>
+                        </div>
+>>>>>>> 1344d8bcc529a7f3c3b54c0e6983634fd7263dad
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<<<<<<< HEAD
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox-overlay" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i></button>
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+=======
+    <!-- Lightbox Overlay -->
+    <div id="lightbox" class="lightbox-overlay" onclick="closeLightbox()">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-img" id="lightbox-img">
+        <div id="lightbox-caption"></div>
+    </div>
     <!-- Interactive Map Section -->
+>>>>>>> 1344d8bcc529a7f3c3b54c0e6983634fd7263dad
     <section id="map-section" class="section map-bg">
         <div class="container">
             <div class="section-title text-center" data-aos="fade-up">
@@ -377,6 +645,70 @@
         window.API_BASE = 'https://carbon-backend-v11.vercel.app';
     </script>
     <!-- Custom JS -->
+<<<<<<< HEAD
     <script src="js/main.js?v=4"></script>
+    <!-- GIS Analysis JS -->
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('tab-' + tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+        function openLightbox(card) {
+            const img = card.querySelector('img');
+            document.getElementById('lightbox-img').src = img.src;
+            document.getElementById('lightbox').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLightbox();
+        });
+=======
+    <script src="js/main.js?v=4">
+    // GIS Analysis Tabs
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+            tabcontent[i].classList.remove("active");
+        }
+        tablinks = document.getElementsByClassName("tab-btn");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove("active");
+        }
+        document.getElementById(tabName).style.display = "block";
+        document.getElementById(tabName).classList.add("active");
+        evt.currentTarget.classList.add("active");
+    }
+
+    // Lightbox Logic
+    function openLightbox(src, caption) {
+        const lightbox = document.getElementById('lightbox');
+        const img = document.getElementById('lightbox-img');
+        const cap = document.getElementById('lightbox-caption');
+        
+        img.src = src;
+        cap.innerHTML = caption;
+        lightbox.style.display = 'flex';
+    }
+
+    function closeLightbox() {
+        document.getElementById('lightbox').style.display = 'none';
+    }
+
+    // Close on ESC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === "Escape") {
+            closeLightbox();
+        }
+    });
+>>>>>>> 1344d8bcc529a7f3c3b54c0e6983634fd7263dad
+    </script>
 </body>
 </html>
