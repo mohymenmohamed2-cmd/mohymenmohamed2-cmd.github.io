@@ -352,6 +352,11 @@ document.addEventListener('DOMContentLoaded', () => {
             content.classList.remove('active');
           }
         });
+
+        // Trigger AOS refresh to animate newly visible elements
+        if (window.AOS) {
+          setTimeout(() => AOS.refresh(), 50);
+        }
       });
     });
   };
@@ -417,18 +422,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (mapEl && window.L) {
     const alexandriaCoords = [31.2001, 29.9187];
+    
+    // Bounds to restrict panning/zooming to Alexandria only
+    const alexBounds = [
+      [30.8, 29.5], // SouthWest
+      [31.6, 30.3]  // NorthEast
+    ];
 
     const satelliteLayer = L.tileLayer(
       'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-      { attribution: 'Tiles © Esri', maxZoom: 19 }
+      { attribution: 'Tiles © Esri', maxZoom: 19, minZoom: 10 }
     );
 
     const osmRoadsLayer = L.tileLayer(
       'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-      { attribution: '© OpenStreetMap contributors', maxZoom: 19 }
+      { attribution: '© OpenStreetMap contributors', maxZoom: 19, minZoom: 10 }
     );
 
-    map = L.map('map', { center: alexandriaCoords, zoom: 11, layers: [satelliteLayer], zoomControl: true });
+    map = L.map('map', { 
+      center: alexandriaCoords, 
+      zoom: 11,
+      minZoom: 10,
+      maxBounds: alexBounds,
+      maxBoundsViscosity: 1.0,
+      layers: [satelliteLayer], 
+      zoomControl: true 
+    });
     // إصلاح تأخر تحميل الخريطة على الموبايل
     setTimeout(() => map.invalidateSize(), 300);
     const layerControl = L.control.layers({ 'القمر الصناعي (ESRI)': satelliteLayer, 'شبكة الطرق (OSM)': osmRoadsLayer }).addTo(map);
