@@ -322,9 +322,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // -----------------------------
   const initGallery = () => {
     const tabBtns = document.querySelectorAll('.gallery-tab-btn');
-    const grids = document.querySelectorAll('.gallery-grid');
+    const tabContents = document.querySelectorAll('.tab-content');
 
-    if (!tabBtns.length || !grids.length) return;
+    if (!tabBtns.length || !tabContents.length) return;
+
+    // By default hide all except the active one
+    tabContents.forEach(content => {
+      if (!content.classList.contains('active')) {
+        content.style.display = 'none';
+      }
+    });
 
     tabBtns.forEach(btn => {
       btn.addEventListener('click', () => {
@@ -335,12 +342,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const targetTab = btn.getAttribute('data-tab');
 
-        // Hide all grids, show target
-        grids.forEach(grid => {
-          if (grid.id === `tab-${targetTab}`) {
-            grid.classList.remove('hidden');
+        // Hide all tab contents, show target
+        tabContents.forEach(content => {
+          if (content.id === `tab-${targetTab}`) {
+            content.style.display = 'block';
+            content.classList.add('active');
           } else {
-            grid.classList.add('hidden');
+            content.style.display = 'none';
+            content.classList.remove('active');
           }
         });
       });

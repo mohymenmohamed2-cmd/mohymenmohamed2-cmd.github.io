@@ -205,42 +205,34 @@
             </div>
 
             <!-- Tab Navigation -->
-            <div class="analysis-tabs" data-aos="fade-up">
-                <button id="btn-landuse" class="tab-btn" onclick="switchTab('landuse')">
-                    <i class="fa-solid fa-city"></i> استخدام الأراضي
-                </button>
-                <button id="btn-ndvi" class="tab-btn" onclick="switchTab('ndvi')">
-                    <i class="fa-solid fa-leaf"></i> الغطاء النباتي
-                </button>
-                <button id="btn-lst" class="tab-btn" onclick="switchTab('lst')">
-                    <i class="fa-solid fa-temperature-high"></i> درجة الحرارة
-                </button>
-                <button id="btn-emissions" class="tab-btn active" onclick="switchTab('emissions')">
-                    <i class="fa-solid fa-smog"></i> الانبعاثات
-                </button>
+            <div class="gallery-tabs" data-aos="fade-up" style="margin-bottom: 25px;">
+                <button class="gallery-tab-btn" data-tab="landuse"><i class="fa-solid fa-city"></i> استخدام الأراضي</button>
+                <button class="gallery-tab-btn" data-tab="ndvi"><i class="fa-solid fa-leaf"></i> الغطاء النباتي</button>
+                <button class="gallery-tab-btn" data-tab="lst"><i class="fa-solid fa-temperature-high"></i> درجة الحرارة</button>
+                <button class="gallery-tab-btn active" data-tab="emissions"><i class="fa-solid fa-smog"></i> الانبعاثات</button>
             </div>
 
             <!-- Tab: LST -->
             <div id="tab-lst" class="tab-content" data-aos="fade-up">
                 <p class="tab-description">تُظهر هذه الخرائط تطور ظاهرة الجزر الحرارية الحضرية في الإسكندرية — اللون الأحمر يدل على ارتفاع شديد في الحرارة ناتج عن التوسع العمراني وزيادة الانبعاثات.</p>
-                <div class="maps-grid">
-                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                <div class="gallery-grid">
+                    <div class="gallery-card glass-card" onclick="openLightbox(this)">
                         <img src="img/analysis/LST_2005.jpeg" alt="LST 2005" loading="lazy">
-                        <div class="map-card-footer">
+                        <div class="gallery-caption">
                             <span class="map-year">2005</span>
                             <span class="map-range">24.5° — 60.1° C</span>
                         </div>
                     </div>
-                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                    <div class="gallery-card glass-card" onclick="openLightbox(this)">
                         <img src="img/analysis/LST_2015.jpeg" alt="LST 2015" loading="lazy">
-                        <div class="map-card-footer">
+                        <div class="gallery-caption">
                             <span class="map-year">2015</span>
                             <span class="map-range">26.6° — 57.4° C</span>
                         </div>
                     </div>
-                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                    <div class="gallery-card glass-card" onclick="openLightbox(this)">
                         <img src="img/analysis/LST_2025.jpeg" alt="LST 2025" loading="lazy">
-                        <div class="map-card-footer">
+                        <div class="gallery-caption">
                             <span class="map-year">2025</span>
                             <span class="map-range">28.4° — 64.4° C</span>
                         </div>
@@ -251,30 +243,30 @@
             <!-- Tab: Emissions -->
             <div id="tab-emissions" class="tab-content active" data-aos="fade-up">
                 <p class="tab-description">توزيع الغازات الدفيئة المختلفة (CO2e, CH4, N2O) عبر محافظة الإسكندرية — تُجسّد هذه الخرائط الأثر الكربوني التراكمي للنشاط الصناعي والمدني.</p>
-                <div class="maps-grid">
-                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                <div class="gallery-grid">
+                    <div class="gallery-card glass-card" onclick="openLightbox(this)">
                         <img src="img/analysis/co2e_2005.jpeg" alt="CO2e 2005" loading="lazy">
-                        <div class="map-card-footer"><span class="map-year">CO₂e — 2005</span></div>
+                        <div class="gallery-caption"><span class="map-year">CO₂e — 2005</span></div>
                     </div>
-                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                    <div class="gallery-card glass-card" onclick="openLightbox(this)">
                         <img src="img/analysis/ch4_2015.jpeg" alt="CH4 2015" loading="lazy">
-                        <div class="map-card-footer"><span class="map-year">CH₄ — 2015</span></div>
+                        <div class="gallery-caption"><span class="map-year">CH₄ — 2015</span></div>
                     </div>
-                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                    <div class="gallery-card glass-card" onclick="openLightbox(this)">
                         <img src="img/analysis/n2o_2005.jpeg" alt="N2O" loading="lazy">
-                        <div class="map-card-footer"><span class="map-year">N₂O — 2005</span></div>
+                        <div class="gallery-caption"><span class="map-year">N₂O — 2005</span></div>
                     </div>
-                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                    <div class="gallery-card glass-card" onclick="openLightbox(this)">
                         <img src="img/analysis/carbon_footprint_2005.jpeg" alt="Carbon 2005" loading="lazy">
-                        <div class="map-card-footer"><span class="map-year">البصمة الكربونية 2005</span></div>
+                        <div class="gallery-caption"><span class="map-year">البصمة الكربونية 2005</span></div>
                     </div>
-                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                    <div class="gallery-card glass-card" onclick="openLightbox(this)">
                         <img src="img/analysis/carbon_footprint_2015.jpeg" alt="Carbon 2015" loading="lazy">
-                        <div class="map-card-footer"><span class="map-year">البصمة الكربونية 2015</span></div>
+                        <div class="gallery-caption"><span class="map-year">البصمة الكربونية 2015</span></div>
                     </div>
-                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                    <div class="gallery-card glass-card" onclick="openLightbox(this)">
                         <img src="img/analysis/carbon_footprint_2025.jpeg" alt="Carbon 2025" loading="lazy">
-                        <div class="map-card-footer"><span class="map-year">البصمة الكربونية 2025</span></div>
+                        <div class="gallery-caption"><span class="map-year">البصمة الكربونية 2025</span></div>
                     </div>
                 </div>
             </div>
@@ -282,30 +274,30 @@
             <!-- Tab: NDVI -->
             <div id="tab-ndvi" class="tab-content" data-aos="fade-up">
                 <p class="tab-description">مؤشر الغطاء النباتي (NDVI) يقيس كثافة النباتات — اللون الأخضر يدل على غطاء نباتي صحي، بينما اللون الأصفر والبني يشير إلى تدهور المساحات الخضراء بسبب التوسع العمراني.</p>
-                <div class="maps-grid">
-                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                <div class="gallery-grid">
+                    <div class="gallery-card glass-card" onclick="openLightbox(this)">
                         <img src="img/analysis/ndvi2005.jpeg" alt="NDVI 2005" loading="lazy">
-                        <div class="map-card-footer"><span class="map-year">NDVI — 2005</span></div>
+                        <div class="gallery-caption"><span class="map-year">NDVI — 2005</span></div>
                     </div>
-                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                    <div class="gallery-card glass-card" onclick="openLightbox(this)">
                         <img src="img/analysis/ndvi2015.jpeg" alt="NDVI 2015" loading="lazy">
-                        <div class="map-card-footer"><span class="map-year">NDVI — 2015</span></div>
+                        <div class="gallery-caption"><span class="map-year">NDVI — 2015</span></div>
                     </div>
-                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                    <div class="gallery-card glass-card" onclick="openLightbox(this)">
                         <img src="img/analysis/ndvi2025.jpeg" alt="NDVI 2025" loading="lazy">
-                        <div class="map-card-footer"><span class="map-year">NDVI — 2025</span></div>
+                        <div class="gallery-caption"><span class="map-year">NDVI — 2025</span></div>
                     </div>
-                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                    <div class="gallery-card glass-card" onclick="openLightbox(this)">
                         <img src="img/analysis/ndbi2005.jpeg" alt="NDBI 2005" loading="lazy">
-                        <div class="map-card-footer"><span class="map-year">NDBI (مؤشر العمران) — 2005</span></div>
+                        <div class="gallery-caption"><span class="map-year">NDBI (مؤشر العمران) — 2005</span></div>
                     </div>
-                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                    <div class="gallery-card glass-card" onclick="openLightbox(this)">
                         <img src="img/analysis/ndbl2025.jpeg" alt="NDBI 2025" loading="lazy">
-                        <div class="map-card-footer"><span class="map-year">NDBI (مؤشر العمران) — 2025</span></div>
+                        <div class="gallery-caption"><span class="map-year">NDBI (مؤشر العمران) — 2025</span></div>
                     </div>
-                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                    <div class="gallery-card glass-card" onclick="openLightbox(this)">
                         <img src="img/analysis/solar_radiation.jpeg" alt="Solar Radiation" loading="lazy">
-                        <div class="map-card-footer"><span class="map-year">الإشعاع الشمسي</span></div>
+                        <div class="gallery-caption"><span class="map-year">الإشعاع الشمسي</span></div>
                     </div>
                 </div>
             </div>
@@ -313,22 +305,27 @@
             <!-- Tab: Land Use -->
             <div id="tab-landuse" class="tab-content" data-aos="fade-up">
                 <p class="tab-description">خرائط استخدام الأراضي توضح كيف تحولت مساحات شاسعة من الأراضي الزراعية والطبيعية إلى مناطق عمرانية وصناعية على مدار العقود الثلاثة الماضية.</p>
-                <div class="maps-grid">
-                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                <div class="gallery-grid">
+                    <div class="gallery-card glass-card" onclick="openLightbox(this)">
                         <img src="img/analysis/landuse2005.jpeg" alt="Land Use 2005" loading="lazy">
-                        <div class="map-card-footer"><span class="map-year">استخدام الأراضي — 2005</span></div>
+                        <div class="gallery-caption"><span class="map-year">استخدام الأراضي — 2005</span></div>
                     </div>
-                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                    <div class="gallery-card glass-card" onclick="openLightbox(this)">
                         <img src="img/analysis/landuse2015.jpeg" alt="Land Use 2015" loading="lazy">
-                        <div class="map-card-footer"><span class="map-year">استخدام الأراضي — 2015</span></div>
+                        <div class="gallery-caption"><span class="map-year">استخدام الأراضي — 2015</span></div>
                     </div>
-                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                    <div class="gallery-card glass-card" onclick="openLightbox(this)">
                         <img src="img/analysis/landuse2025.jpeg" alt="Land Use 2025" loading="lazy">
-                        <div class="map-card-footer"><span class="map-year">استخدام الأراضي — 2025</span></div>
+                        <div class="gallery-caption"><span class="map-year">استخدام الأراضي — 2025</span></div>
                     </div>
-                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                    <div class="gallery-card glass-card" onclick="openLightbox(this)">
                         <img src="img/analysis/dem_alex.jpeg" alt="DEM Alexandria" loading="lazy">
-                        <div class="map-card-footer"><span class="map-year">نموذج الارتفاع الرقمي (DEM)</span></div>
+                        <div class="gallery-caption"><span class="map-year">نموذج الارتفاع الرقمي (DEM)</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
 
