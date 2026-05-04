@@ -1,54 +1,565 @@
 <!DOCTYPE html>
-
-
 <html lang="ar" dir="rtl">
-
-
 <head>
-
-
     <meta charset="UTF-8">
-
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
     <title>البصمة الكربونية | نظام مراقبة الانبعاثات - الإسكندرية</title>
-
-
     
-
-
     <!-- Google tag (gtag.js) -->
-
-
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-L155D6NTZ6"></script>
-
-
     <script>
-
-
       window.dataLayer = window.dataLayer || [];
-
-
       function gtag(){dataLayer.push(arguments);}
-
-
       gtag('js', new Date());
 
-
-
-
-
-
       gtag('config', 'G-L155D6NTZ6');
-
-
     </script>
-
-
     
-
-
     <!-- SEO Meta Tags -->
+    <meta name="description" content="منصة متطورة لتحليل انبعاثات الكربون في الإسكندرية باستخدام نظم المعلومات الجغرافية (GIS). رصد لحظي، تقارير تحليلية، وخرائط تفاعلية لدعم الاستدامة البيئية.">
+    <meta name="keywords" content="GIS, الإسكندرية, البصمة الكربونية, تلوث الهواء, استدامة, بيئة, مصر, رصد بيئي">
+    <meta name="author" content="مهيمن محمد">
+    
+    <!-- OpenGraph Tags -->
+    <meta property="og:title" content="البصمة الكربونية - نظام مراقبة الانبعاثات">
+    <meta property="og:description" content="تحليل مكاني دقيق لانبعاثات الكربون في الإسكندرية باستخدام تقنيات GIS المتقدمة.">
+    <meta property="og:type" content="website">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- External Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css?v=3">
+</head>
+<body class="loading">
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress"></div>
+    <!-- Back to Top -->
+    <button id="back-to-top" aria-label="العودة للأعلى"><i class="fa-solid fa-chevron-up"></i></button>
+    <!-- UI Elements: Toast & Loader -->
+    <div id="toast-container"></div>
+    <div id="global-loader">
+        <div class="spinner"></div>
+    </div>
+    <!-- Navbar -->
+    <nav class="navbar glass-effect" id="main-navbar">
+        <div class="container nav-content">
+            <div class="logo"><i class="fa-solid fa-earth-africa neon-text"></i> البصمة الكربونية</div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home" class="nav-link">الرئيسية</a></li>
+                <li><a href="#idea" class="nav-link">الفكرة</a></li>
+                <li><a href="#methodology" class="nav-link">المنهجية</a></li>
+                <li><a href="#stats-section" class="nav-link">الإحصائيات</a></li>
+                <li><a href="#map-section" class="nav-link">الخريطة التفاعلية</a></li>
+                <li><a href="#updates-section" class="nav-link">التحديثات</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="فتح القائمة">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+    <div id="nav-overlay" style="display:none;position:fixed;inset:0;z-index:1040;background:rgba(0,0,0,0.5);"></div>
 
+    <!-- Hero Section -->
+    <header id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-particles" id="hero-particles"></div>
+        <div class="container hero-content" data-aos="zoom-in" data-aos-duration="1000">
+            <div class="bismillah-text" style="font-family: 'Cairo', sans-serif; font-size: 1.6rem; color: #ffffff; margin-top: 80px; margin-bottom: 35px; font-weight: 700; text-shadow: 0 0 10px rgba(16, 185, 129, 0.8), 0 0 20px rgba(16, 185, 129, 0.4); letter-spacing: 2px;">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+            <span class="badge neon-glow">مشروع تخرج المساحة والخرائط</span>
+            <h1 class="hero-title gradient-text" id="hero-title">نظام المراقبة الذكي للبصمة الكربونية</h1>
+            <h2 class="hero-subtitle">تحليل انبعاثات محافظة الإسكندرية <span class="typing-text" id="typing-text"></span></h2>
+            <p class="hero-text">
+                منصة متطورة تعتمد على النمذجة المكانية لمعالجة بيانات الانبعاثات وتحويلها لخرائط حرارية دقيقة تدعم صناعة القرار البيئي في المدن الساحلية.
+            </p>
+            <a href="#map-section" class="cta-btn neon-btn">عرض الخريطة التفاعلية <i class="fa-solid fa-location-crosshairs pulse-icon"></i></a>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+    </header>
+
+    <!-- Project Idea Section -->
+    <section id="idea" class="section">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2><i class="fa-solid fa-satellite-dish neon-text"></i> التقنية والبيئة</h2>
+                <p>دمج أنظمة المعلومات الجغرافية مع علوم البيئة</p>
+            </div>
+            <div class="idea-content">
+                <div class="idea-card glass-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="icon-box"><i class="fa-solid fa-smog"></i></div>
+                    <h3>رصد الانبعاثات</h3>
+                    <p>تحليل مكاني دقيق لمصادر التلوث الصناعي والمروري بناءً على المعايير البيئية العالمية.</p>
+                </div>
+                <div class="idea-card glass-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="icon-box"><i class="fa-solid fa-layer-group"></i></div>
+                    <h3>النمذجة المكانية</h3>
+                    <p>استخدام أدوات التحليل المكانية المتقدمة لإنشاء طبقات رقمية تعكس الوضع البيئي الحالي.</p>
+                </div>
+                <div class="idea-card glass-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="icon-box"><i class="fa-solid fa-leaf"></i></div>
+                    <h3>دعم القرار</h3>
+                    <p>توفير بيانات لحظية ودقيقة لصناع القرار للمساعدة في تخطيط المدن الذكية والمستدامة.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology Section -->
+    <section id="methodology" class="section bg-darker">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2><i class="fa-solid fa-network-wired neon-text"></i> منهجية التحليل</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-left">
+                    <div class="timeline-dot neon-glow">1</div>
+                    <div class="timeline-content glass-card">
+                        <h3>جمع ومعالجة البيانات المكانية</h3>
+                        <p>استيراد بيانات الكثافة السكانية، شبكات النقل، وصور الأقمار الصناعية ومعالجتها رقمياً.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-dot neon-glow">2</div>
+                    <div class="timeline-content glass-card">
+                        <h3>تطبيق نماذج GIS البيئية</h3>
+                        <p>استخدام خوارزميات الاستيفاء المكاني والتحليل السطحي لتقدير حجم الانبعاثات في المناطق غير المرصودة.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-left">
+                    <div class="timeline-dot neon-glow">3</div>
+                    <div class="timeline-content glass-card">
+                        <h3>استخراج الخرائط والتقارير</h3>
+                        <p>توليد خرائط حرارية (Heatmaps) دقيقة توضح توزيع البصمة الكربونية وتصنيف المناطق الخطرة.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Stats Section -->
+    <section id="stats-section" class="section stats-bg">
+        <div class="container">
+            <div class="section-title text-center" data-aos="fade-up">
+                <h2><i class="fa-solid fa-chart-simple neon-text"></i> المؤشرات الرقمية</h2>
+                <p>ملخص البيانات المكانية المرصودة عبر المحافظة</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-box glass-card" data-aos="zoom-in" data-aos-delay="100">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                    <h3 class="counter" data-target="6">0</h3>
+                    <p>مناطق رئيسية محللة</p>
+                </div>
+                <div class="stat-box glass-card" data-aos="zoom-in" data-aos-delay="200">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                    <h3 class="counter" data-target="15550">0</h3>
+                    <p>طن CO2 مُقدر سنوياً</p>
+                </div>
+                <div class="stat-box glass-card" data-aos="zoom-in" data-aos-delay="300">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <h3 class="counter" data-target="9">0</h3>
+                    <p>طبقة تحليل مكاني</p>
+                </div>
+                <div class="stat-box glass-card" data-aos="zoom-in" data-aos-delay="400">
+                    <i class="fa-solid fa-people-group"></i>
+                    <h3 class="counter" data-target="5.4" data-decimal="true">0</h3>
+                    <p>مليون نسمة متأثر</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Analytics Section [NEW] -->
+    <section id="analytics-section" class="section bg-darker">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2><i class="fa-solid fa-chart-line neon-text"></i> التحليل الزمني والمكاني</h2>
+                <p>مقارنة مستويات الانبعاثات وتوقعات الاتجاهات المستقبلية</p>
+            </div>
+            <div class="analytics-grid">
+                <div class="chart-container glass-card neon-border" data-aos="fade-right">
+                    <h3>توزيع الانبعاثات حسب القطاع</h3>
+                    <canvas id="sectorChart"></canvas>
+                </div>
+                <div class="chart-container glass-card neon-border" data-aos="fade-left">
+                    <h3>التوجه السنوي للانبعاثات (تقديري)</h3>
+                    <canvas id="trendChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- GIS Analysis Gallery Section -->
+    <section id="gis-analysis" class="section bg-darker">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2><i class="fa-solid fa-map neon-text"></i> موسوعة التحليل المكاني</h2>
+                <p>دراسة جيو-مكانية معمقة باستخدام بيانات الأقمار الصناعية عبر ثلاثة عقود</p>
+            </div>
+
+            <!-- Two-column header -->
+            <div class="analysis-header" data-aos="fade-up">
+                <div class="analysis-method-card glass-card">
+                    <div class="method-icon"><i class="fa-solid fa-user-graduate"></i></div>
+                    <h3>التحليل الجغرافي المعمق</h3>
+                    <p>دراسة ميدانية وبحثية باستخدام برامج GIS المتخصصة (ArcGIS) لاستخلاص المؤشرات البيئية من بيانات الأقمار الصناعية</p>
+                </div>
+                <div class="analysis-vs">VS</div>
+                <div class="analysis-method-card glass-card">
+                    <div class="method-icon"><i class="fa-solid fa-microchip"></i></div>
+                    <h3>النمذجة الرقمية التفاعلية</h3>
+                    <p>تحويل مخرجات التحليل إلى منصة ذكية تفاعلية تعرض البيانات بشكل لحظي وتدعم اتخاذ القرار البيئي</p>
+                </div>
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="analysis-tabs" data-aos="fade-up">
+                <button id="btn-landuse" class="tab-btn active" onclick="switchTab('landuse')">
+                    <i class="fa-solid fa-city"></i> استخدام الأراضي
+                </button>
+                <button id="btn-ndvi" class="tab-btn" onclick="switchTab('ndvi')">
+                    <i class="fa-solid fa-leaf"></i> الغطاء النباتي
+                </button>
+                <button id="btn-lst" class="tab-btn" onclick="switchTab('lst')">
+                    <i class="fa-solid fa-temperature-high"></i> درجة الحرارة
+                </button>
+                <button id="btn-emissions" class="tab-btn" onclick="switchTab('emissions')">
+                    <i class="fa-solid fa-smog"></i> الانبعاثات
+                </button>
+            </div>
+
+            <!-- Tab: LST -->
+            <div id="tab-lst" class="tab-content" data-aos="fade-up">
+                <p class="tab-description">تُظهر هذه الخرائط تطور ظاهرة الجزر الحرارية الحضرية في الإسكندرية — اللون الأحمر يدل على ارتفاع شديد في الحرارة ناتج عن التوسع العمراني وزيادة الانبعاثات.</p>
+                <div class="maps-grid">
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/LST_2005.jpeg" alt="LST 2005" loading="lazy">
+                        <div class="map-card-footer">
+                            <span class="map-year">2005</span>
+                            <span class="map-range">24.5° — 60.1° C</span>
+                        </div>
+                    </div>
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/LST_2015.jpeg" alt="LST 2015" loading="lazy">
+                        <div class="map-card-footer">
+                            <span class="map-year">2015</span>
+                            <span class="map-range">26.6° — 57.4° C</span>
+                        </div>
+                    </div>
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/LST_2025.jpeg" alt="LST 2025" loading="lazy">
+                        <div class="map-card-footer">
+                            <span class="map-year">2025</span>
+                            <span class="map-range">28.4° — 64.4° C</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Emissions -->
+            <div id="tab-emissions" class="tab-content" data-aos="fade-up">
+                <p class="tab-description">توزيع الغازات الدفيئة المختلفة (CO2e, CH4, N2O) عبر محافظة الإسكندرية — تُجسّد هذه الخرائط الأثر الكربوني التراكمي للنشاط الصناعي والمدني.</p>
+                <div class="maps-grid">
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/co2e_2005.jpeg" alt="CO2e 2005" loading="lazy">
+                        <div class="map-card-footer"><span class="map-year">CO₂e — 2005</span></div>
+                    </div>
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/ch4_2015.jpeg" alt="CH4 2015" loading="lazy">
+                        <div class="map-card-footer"><span class="map-year">CH₄ — 2015</span></div>
+                    </div>
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/n2o_2005.jpeg" alt="N2O" loading="lazy">
+                        <div class="map-card-footer"><span class="map-year">N₂O — 2005</span></div>
+                    </div>
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/carbon_footprint_2005.jpeg" alt="Carbon 2005" loading="lazy">
+                        <div class="map-card-footer"><span class="map-year">البصمة الكربونية 2005</span></div>
+                    </div>
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/carbon_footprint_2015.jpeg" alt="Carbon 2015" loading="lazy">
+                        <div class="map-card-footer"><span class="map-year">البصمة الكربونية 2015</span></div>
+                    </div>
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/carbon_footprint_2025.jpeg" alt="Carbon 2025" loading="lazy">
+                        <div class="map-card-footer"><span class="map-year">البصمة الكربونية 2025</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: NDVI -->
+            <div id="tab-ndvi" class="tab-content" data-aos="fade-up">
+                <p class="tab-description">مؤشر الغطاء النباتي (NDVI) يقيس كثافة النباتات — اللون الأخضر يدل على غطاء نباتي صحي، بينما اللون الأصفر والبني يشير إلى تدهور المساحات الخضراء بسبب التوسع العمراني.</p>
+                <div class="maps-grid">
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/ndvi2005.jpeg" alt="NDVI 2005" loading="lazy">
+                        <div class="map-card-footer"><span class="map-year">NDVI — 2005</span></div>
+                    </div>
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/ndvi2015.jpeg" alt="NDVI 2015" loading="lazy">
+                        <div class="map-card-footer"><span class="map-year">NDVI — 2015</span></div>
+                    </div>
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/ndvi2025.jpeg" alt="NDVI 2025" loading="lazy">
+                        <div class="map-card-footer"><span class="map-year">NDVI — 2025</span></div>
+                    </div>
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/ndbi2005.jpeg" alt="NDBI 2005" loading="lazy">
+                        <div class="map-card-footer"><span class="map-year">NDBI (مؤشر العمران) — 2005</span></div>
+                    </div>
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/ndbl2025.jpeg" alt="NDBI 2025" loading="lazy">
+                        <div class="map-card-footer"><span class="map-year">NDBI (مؤشر العمران) — 2025</span></div>
+                    </div>
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/solar_radiation.jpeg" alt="Solar Radiation" loading="lazy">
+                        <div class="map-card-footer"><span class="map-year">الإشعاع الشمسي</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Land Use -->
+            <div id="tab-landuse" class="tab-content active" data-aos="fade-up">
+                <p class="tab-description">خرائط استخدام الأراضي توضح كيف تحولت مساحات شاسعة من الأراضي الزراعية والطبيعية إلى مناطق عمرانية وصناعية على مدار العقود الثلاثة الماضية.</p>
+                <div class="maps-grid">
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/dem_alex.jpeg" alt="DEM Alexandria" loading="lazy">
+                        <div class="map-card-footer"><span class="map-year">نموذج الارتفاع الرقمي (DEM)</span></div>
+                    </div>
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/landuse2005.jpeg" alt="Land Use 2005" loading="lazy">
+                        <div class="map-card-footer"><span class="map-year">استخدام الأراضي — 2005</span></div>
+                    </div>
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/landuse2015.jpeg" alt="Land Use 2015" loading="lazy">
+                        <div class="map-card-footer"><span class="map-year">استخدام الأراضي — 2015</span></div>
+                    </div>
+                    <div class="map-card glass-card" onclick="openLightbox(this)">
+                        <img src="img/analysis/landuse2025.jpeg" alt="Land Use 2025" loading="lazy">
+                        <div class="map-card-footer"><span class="map-year">استخدام الأراضي — 2025</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox-overlay" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i></button>
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+    <!-- Interactive Map Section -->
+    <section id="map-section" class="section map-bg">
+        <div class="container">
+            <div class="section-title text-center" data-aos="fade-up">
+                <h2><i class="fa-solid fa-globe neon-text pulse-icon"></i> المرصد المكاني اللحظي</h2>
+                <p>توزيع بؤر الانبعاثات المجمعة من قاعدة البيانات</p>
+            </div>
+            
+            <div class="map-wrapper glass-card neon-border" data-aos="zoom-in-up">
+                <div id="map" class="map-container"></div>
+                
+                <div class="map-overlay-panel">
+                    <h4>مؤشر الخطورة (GIS)</h4>
+                    <div class="legend-item"><span class="color red pulse-icon"></span> تلوث عالي (صناعي/مروري كثيف)</div>
+                    <div class="legend-item"><span class="color orange"></span> تلوث متوسط</div>
+                    <div class="legend-item"><span class="color green"></span> نطاق آمن</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Table Section -->
+    <section id="data-table-section" class="section">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2><i class="fa-solid fa-table-list neon-text"></i> السجل التحليلي لانبعاثات المناطق</h2>
+                <p>تفاصيل القراءات المكانية للبصمة الكربونية في الإسكندرية</p>
+            </div>
+            <!-- Filter & Export Bar -->
+            <div class="table-controls">
+                <div class="filter-btns">
+                    <button class="filter-btn active" data-filter="all">الكل</button>
+                    <button class="filter-btn" data-filter="high"><span class="dot red"></span> عالي</button>
+                    <button class="filter-btn" data-filter="medium"><span class="dot orange"></span> متوسط</button>
+                    <button class="filter-btn" data-filter="low"><span class="dot green-d"></span> منخفض</button>
+                </div>
+                <button id="export-csv-btn" class="export-btn"><i class="fa-solid fa-download"></i> تصدير CSV</button>
+            </div>
+            <p class="table-hint"><i class="fa-solid fa-circle-info"></i> اضغط على أي صف لعرض الموقع على الخريطة التفاعلية</p>
+            <div class="table-container glass-card neon-border" data-aos="fade-up" data-aos-delay="100">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>المنطقة / البؤرة</th>
+                            <th>مؤشر الانبعاث</th>
+                            <th>انبعاثات CO2 (طن/سنة)</th>
+                            <th>جودة الهواء (AQI)</th>
+                            <th>الموقع</th>
+                        </tr>
+                    </thead>
+                    <tbody id="hotspots-table-body">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Importance Section -->
+    <section id="importance" class="section bg-darker">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2><i class="fa-solid fa-rocket neon-text"></i> أهمية المشروع والمخرجات</h2>
+            </div>
+            <div class="idea-content">
+                <div class="idea-card glass-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="icon-box"><i class="fa-solid fa-satellite"></i></div>
+                    <h3>التكنولوجيا والبيئة</h3>
+                    <p>يربط بين التقنية الحديثة والبيئة بشكل عملي لدعم التحول نحو مدن ذكية ومستدامة.</p>
+                </div>
+                <div class="idea-card glass-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="icon-box"><i class="fa-solid fa-chart-line"></i></div>
+                    <h3>صناعة القرار</h3>
+                    <p>أداة تحليلية لصناع القرار، وخرائط رقمية دقيقة للمساهمة في تحقيق أهداف التنمية المستدامة.</p>
+                </div>
+                <div class="idea-card glass-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="icon-box"><i class="fa-solid fa-microchip"></i></div>
+                    <h3>الرؤية المستقبلية</h3>
+                    <p>دمج أنظمة المراقبة اللحظية والذكاء الاصطناعي للتنبؤ بالتلوث، وإنشاء منصات تفاعلية.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Updates Section -->
+    <section id="updates-section" class="section">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2><i class="fa-solid fa-rss neon-text"></i> النشرات وتقارير الرصد</h2>
+            </div>
+            <div id="posts-container" class="posts-grid" data-aos="fade-up">
+                <!-- Posts will be generated here by JavaScript -->
+                <div class="empty-state glass-card">يتم جلب البيانات من الخادم... <i class="fa-solid fa-spinner fa-spin"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <h2><i class="fa-solid fa-earth-africa neon-text"></i> البصمة الكربونية</h2>
+                <p>المنصة الرقمية لتحليل البصمة الكربونية - الإسكندرية</p>
+            </div>
+            <div class="footer-socials">
+                <a href="https://github.com/Alexandria-Carbon-cmd/Alexandria-Carbon-cmd.github.io" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            </div>
+            <p>&copy; 2026 مشروع تخرج الإسكندرية - مساحة و خرائط. جميع الحقوق محفوظة.</p>
+
+            <!-- Team Section -->
+            <div class="team-section" style="margin-top: 20px;">
+                <p class="team-label" style="font-size:0.85rem; letter-spacing:2px; text-transform:uppercase; color: var(--text-muted); margin-bottom: 14px;">
+                    <i class="fa-solid fa-users" style="margin-left:6px; color: var(--neon-green);"></i> Project Team
+                </p>
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;">
+                    <div class="team-member-chip">Mohymen Mohamed <i class="fa-solid fa-user-astronaut"></i></div>
+                    <div class="team-member-chip">Ahmed Mohamed <i class="fa-solid fa-user-astronaut"></i></div>
+                    <div class="team-member-chip">Mariam Adel <i class="fa-solid fa-user-astronaut"></i></div>
+                    <div class="team-member-chip">Raghad Alaa <i class="fa-solid fa-user-astronaut"></i></div>
+                    <div class="team-member-chip">Khadija Nagi <i class="fa-solid fa-user-astronaut"></i></div>
+                    <div class="team-member-chip">Samaa Mohamed <i class="fa-solid fa-user-astronaut"></i></div>
+                </div>
+                <a href="#" id="admin-trigger" title="إدارة النظام" style="display:block; margin-top:12px;">
+                    <i class="fa-solid fa-shield-halved" style="font-size: 0.8rem; color: var(--text-muted);"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Admin Modal -->
+    <div id="admin-modal" class="modal">
+        <div class="modal-content glass-card neon-border">
+            <span class="close-modal">&times;</span>
+            <div id="login-step">
+                <h3 class="gradient-text"><i class="fa-solid fa-terminal"></i> الدخول الآمن للنظام</h3>
+                <p style="color: var(--text-muted);">الرجاء إدخال بيانات التفويض للوصول المباشر لقاعدة البيانات</p>
+                <input type="text" id="admin-username" placeholder="مُعرف المستخدم..." class="form-input dark-input">
+                <input type="password" id="admin-password" placeholder="مفتاح التشفير..." class="form-input dark-input">
+                <button id="login-btn" class="form-btn neon-btn">توثيق الدخول</button>
+                <p id="login-error" class="error-msg"></p>
+            </div>
+            <div id="post-step" style="display: none;">
+                <div class="admin-tabs">
+                    <button id="tab-post" class="tab-btn active"><i class="fa-solid fa-file-pen"></i> نشر تقرير</button>
+                    <button id="tab-hotspot" class="tab-btn"><i class="fa-solid fa-location-pin"></i> إضافة بؤرة GIS</button>
+                    <button id="logout-btn" class="tab-btn logout"><i class="fa-solid fa-power-off"></i> إنهاء الجلسة</button>
+                </div>
+                
+                <div id="form-post">
+                    <h3>نشر تقرير رصد جديد</h3>
+                    <input type="text" id="post-title" placeholder="عنوان التقرير" class="form-input dark-input">
+                    <textarea id="post-content" placeholder="اكتب التفاصيل والملاحظات..." class="form-input dark-input" rows="4"></textarea>
+                    <button id="publish-btn" class="form-btn neon-btn">إدراج في قاعدة البيانات</button>
+                </div>
+
+                <div id="form-hotspot" style="display: none;">
+                    <h3>إضافة نقطة انبعاثات مكانية</h3>
+                    <input type="text" id="hotspot-name" placeholder="الاسم (مثال: ميناء الإسكندرية)" class="form-input dark-input">
+                    <div style="display: flex; gap: 10px;">
+                        <input type="number" id="hotspot-lat" placeholder="خط العرض (Latitude)" class="form-input dark-input" step="any">
+                        <input type="number" id="hotspot-lng" placeholder="خط الطول (Longitude)" class="form-input dark-input" step="any">
+                    </div>
+                    <input type="number" id="hotspot-intensity" placeholder="مؤشر الانبعاث (0.0 إلى 1.0)" class="form-input dark-input" step="0.1" min="0" max="1">
+                    <button id="add-hotspot-btn" class="form-btn neon-btn">حقن البيانات بالخريطة</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- API Base URL -->
+    <script>
+        window.API_BASE = 'https://carbon-backend-v11.vercel.app';
+    </script>
+    <!-- Custom JS -->
+    <script src="js/main.js?v=4"></script>
+    <!-- GIS Analysis JS -->
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('tab-' + tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+        function openLightbox(card) {
+            const img = card.querySelector('img');
+            document.getElementById('lightbox-img').src = img.src;
+            document.getElementById('lightbox').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLightbox();
+        });
+    </script>
+</body>
+    </html>
