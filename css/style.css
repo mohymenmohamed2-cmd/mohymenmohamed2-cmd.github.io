@@ -1,46 +1,231 @@
 :root {
-    --bg-darker: #020617;
-    --bg-dark: #0f172a;
-    --bg-card: rgba(30, 41, 59, 0.5);
-    
-    --primary: #10b981;
-    --primary-glow: rgba(16, 185, 129, 0.4);
-    --neon-green: #10b981;
-    --secondary: #06b6d4;
-    --accent: #f59e0b;
-    
-    --text-main: #f8fafc;
-    --text-muted: #94a3b8;
-    --text-dim: #64748b;
-    
-    --glass-bg: rgba(15, 23, 42, 0.7);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
-    
-    --font-ar: 'Cairo', sans-serif;
-    --font-en: 'Inter', sans-serif;
-    
-    --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(2, 6, 23, 0.8);
+    backdrop-filter: blur(8px);
+}
+.modal-content {
+    margin: 8vh auto;
+    padding: 40px;
+    width: 90%;
+    max-width: 550px;
+    position: relative;
+}
+.close-modal {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    font-size: 28px;
+    color: var(--text-muted);
+    cursor: pointer;
+}
+.close-modal:hover { color: var(--neon-green); }
+
+
+/* form-input: shared base style for all inputs/textareas */
+.form-input {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-family: var(--font-ar);
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    display: block;
+    transition: var(--transition);
+}
+.dark-input {
+    background: rgba(2, 6, 23, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-main);
+}
+.dark-input::placeholder { color: var(--text-dim); }
+.dark-input:focus {
+    outline: none;
+    border-color: var(--neon-green);
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
 }
 
 
-/* Custom Scrollbar */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--bg-darker); }
-::-webkit-scrollbar-thumb { background: var(--glass-border); border-radius: 10px; }
-::-webkit-scrollbar-thumb:hover { background: var(--primary); }
-
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+.form-btn {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 10px;
     font-family: var(--font-ar);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 5px;
+}
 
-/* Gallery Styles */
-.tab-content { display: none; }
-.tab-content.active { display: block; animation: fadeIn 0.5s ease; }
-.maps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
-.map-card img { height: 250px; width: 100%; object-fit: cover; transition: transform 0.4s; }
-.map-card { cursor: pointer; border-radius: 12px; overflow: hidden; }
-.map-card:hover img { transform: scale(1.05); }
+
+.admin-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 15px;
+
+
+/* GIS Analysis Section */
+.analysis-bg {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    padding: 80px 0;
+}
+
+.analysis-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 50px;
+}
+
+.method-card {
+    flex: 1;
+    padding: 30px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.method-card:hover {
+    transform: translateY(-10px);
+}
+
+.method-icon {
+    font-size: 3rem;
+    color: var(--neon-blue);
+    margin-bottom: 15px;
+}
+
+.vs-circle {
+    width: 60px;
+    height: 60px;
+    background: var(--neon-blue);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #000;
+    box-shadow: 0 0 20px var(--neon-blue);
+}
+
+.analysis-tabs {
+    padding: 20px;
+}
+
+.tabs-nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tab-btn.active, .tab-btn:hover {
+    background: var(--neon-blue);
+    color: #000;
+    box-shadow: 0 0 15px var(--neon-blue);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+.maps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.map-card {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.map-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.map-card:hover img {
+    transform: scale(1.1);
+}
+
+.map-card-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.map-card-footer span {
+    color: var(--neon-green);
+    font-weight: bold;
+}
+
+/* Lightbox */
+.lightbox-overlay {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.lightbox-img {
+    max-width: 90%;
+    max-height: 80%;
+    border: 2px solid var(--neon-green);
+    border-radius: 10px;
+}
+
+#lightbox-caption {
+    color: #fff;
+    margin-top: 20px;
+    font-size: 1.2rem;
+}
+
+.close-lightbox {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #fff;
+    font-size: 40px;
+    cursor: pointer;
+}
