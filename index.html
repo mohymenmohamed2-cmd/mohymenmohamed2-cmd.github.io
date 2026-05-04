@@ -330,9 +330,11 @@
 
 
     <!-- Lightbox Modal -->
-    <div id="lightbox" class="lightbox-overlay" onclick="closeLightbox()">
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
         <button class="lightbox-close" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i></button>
-        <img id="lightbox-img" src="" alt="">
+        <div class="lightbox-inner" onclick="event.stopPropagation()">
+            <img id="lightbox-img" src="" alt="">
+        </div>
     </div>
 
     <!-- Interactive Map Section -->
