@@ -317,60 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initCharts();
 
-  // -----------------------------
-  // 7.5) GIS Gallery Tabs
-  // -----------------------------
-  const initGallery = () => {
-    const tabBtns = document.querySelectorAll('.gallery-tab-btn');
-    const tabContents = document.querySelectorAll('.tab-content');
-
-    if (!tabBtns.length || !tabContents.length) return;
-
-    // Helper: force all cards inside a tab to be fully visible (kill AOS leftovers)
-    const forceVisible = (tabEl) => {
-      tabEl.querySelectorAll('[data-aos], .gallery-card, .gallery-grid, img').forEach(el => {
-        el.style.opacity = '1';
-        el.style.transform = 'none';
-        el.style.visibility = 'visible';
-        el.style.transition = 'none';
-        el.removeAttribute('data-aos');
-        el.removeAttribute('data-aos-delay');
-      });
-    };
-
-    // Setup initial state: show active, hide rest, kill AOS on all
-    tabContents.forEach(content => {
-      if (content.classList.contains('active')) {
-        content.style.display = 'block';
-        forceVisible(content);
-      } else {
-        content.style.display = 'none';
-      }
-    });
-
-    tabBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        tabBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        const targetTab = btn.getAttribute('data-tab');
-
-        tabContents.forEach(content => {
-          if (content.id === `tab-${targetTab}`) {
-            content.style.display = 'block';
-            content.classList.add('active');
-            // Force visible immediately — kill any AOS opacity/transform
-            forceVisible(content);
-          } else {
-            content.style.display = 'none';
-            content.classList.remove('active');
-          }
-        });
-      });
-    });
-  };
-
-  initGallery();
+  // GIS Gallery Tabs handled by inline script in index.html
 
   // -----------------------------
   // 8) Leaflet Map + Hotspots (API)

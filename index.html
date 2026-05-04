@@ -204,8 +204,25 @@
                 </div>
             </div>
 
+            <!-- GALLERY: Kill AOS interference on all cards -->
+            <style>
+                #gis-analysis .gallery-card,
+                #gis-analysis .gallery-grid,
+                #gis-analysis .tab-content,
+                #gis-analysis img,
+                #gis-analysis [data-aos] {
+                    opacity: 1 !important;
+                    transform: none !important;
+                    visibility: visible !important;
+                    animation: none !important;
+                    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+                }
+                #gis-analysis .tab-content { display: none; }
+                #gis-analysis .tab-content.active { display: block !important; }
+            </style>
+
             <!-- Tab Navigation -->
-            <div class="gallery-tabs" data-aos="fade-up" style="margin-bottom: 25px;">
+            <div class="gallery-tabs" style="margin-bottom: 25px;">
                 <button class="gallery-tab-btn" data-tab="landuse"><i class="fa-solid fa-city"></i> استخدام الأراضي</button>
                 <button class="gallery-tab-btn" data-tab="ndvi"><i class="fa-solid fa-leaf"></i> الغطاء النباتي</button>
                 <button class="gallery-tab-btn" data-tab="lst"><i class="fa-solid fa-temperature-high"></i> درجة الحرارة</button>
@@ -519,14 +536,61 @@
     <script src="js/main.js?v=4"></script>
     <!-- GIS Analysis JS -->
     <script>
-        function switchTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById('tab-' + tabId).classList.add('active');
-            event.currentTarget.classList.add('active');
-        }
+        // ========================================================
+        // GIS Gallery Tabs — Single source of truth (no AOS conflict)
+        // ========================================================
+        (function() {
+            function showTab(tabId) {
+                // Hide all tab contents
+                document.querySelectorAll('.tab-content').forEach(function(el) {
+                    el.style.setProperty('display', 'none', 'important');
+                    el.classList.remove('active');
+                });
+                // Show target tab
+                var target = document.getElementById('tab-' + tabId);
+                if (target) {
+                    target.style.setProperty('display', 'block', 'important');
+                    target.classList.add('active');
+                    // Force all images inside visible — kill any AOS styles
+                    target.querySelectorAll('img, .gallery-card, .gallery-grid').forEach(function(el) {
+                        el.style.setProperty('opacity', '1', 'important');
+                        el.style.setProperty('transform', 'none', 'important');
+                        el.style.setProperty('visibility', 'visible', 'important');
+                    });
+                }
+                // Update button states
+                document.querySelectorAll('.gallery-tab-btn').forEach(function(b) {
+                    b.classList.remove('active');
+                });
+                var activeBtn = document.querySelector('.gallery-tab-btn[data-tab="' + tabId + '"]');
+                if (activeBtn) activeBtn.classList.add('active');
+            }
+
+            // Wire up tab buttons on DOM ready
+            document.addEventListener('DOMContentLoaded', function() {
+                // Hide all tabs first
+                document.querySelectorAll('.tab-content').forEach(function(el) {
+                    el.style.setProperty('display', 'none', 'important');
+                });
+                // Show default active tab (emissions)
+                showTab('emissions');
+
+                // Attach click listeners
+                document.querySelectorAll('.gallery-tab-btn').forEach(function(btn) {
+                    btn.addEventListener('click', function() {
+                        showTab(btn.getAttribute('data-tab'));
+                    });
+                });
+            });
+
+            // Also expose globally for any inline onclick usage
+            window.switchTab = showTab;
+        })();
+
+        // Lightbox
         function openLightbox(card) {
-            const img = card.querySelector('img');
+            var img = card.querySelector('img');
+            if (!img) return;
             document.getElementById('lightbox-img').src = img.src;
             document.getElementById('lightbox').classList.add('open');
             document.body.style.overflow = 'hidden';
