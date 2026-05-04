@@ -198,7 +198,7 @@
         </div>
     </section>
 
-<<<<<<< HEAD
+
     <!-- GIS Analysis Gallery Section -->
     <section id="gis-analysis" class="section bg-darker">
         <div class="container">
@@ -243,21 +243,21 @@
                 <p class="tab-description">تُظهر هذه الخرائط تطور ظاهرة الجزر الحرارية الحضرية في الإسكندرية — اللون الأحمر يدل على ارتفاع شديد في الحرارة ناتج عن التوسع العمراني وزيادة الانبعاثات.</p>
                 <div class="maps-grid">
                     <div class="map-card glass-card" onclick="openLightbox(this)">
-                        <img src="img/analysis/درجة حرارة السطح الارض 2005.jpeg" alt="LST 2005" loading="lazy">
+                        <img src="img/analysis/LST_2005.jpeg" alt="LST 2005" loading="lazy">
                         <div class="map-card-footer">
                             <span class="map-year">2005</span>
                             <span class="map-range">24.5° — 60.1° C</span>
                         </div>
                     </div>
                     <div class="map-card glass-card" onclick="openLightbox(this)">
-                        <img src="img/analysis/درجة حرارة السطح الارض 2015.jpeg" alt="LST 2015" loading="lazy">
+                        <img src="img/analysis/LST_2015.jpeg" alt="LST 2015" loading="lazy">
                         <div class="map-card-footer">
                             <span class="map-year">2015</span>
                             <span class="map-range">26.6° — 57.4° C</span>
                         </div>
                     </div>
                     <div class="map-card glass-card" onclick="openLightbox(this)">
-                        <img src="img/analysis/درجة حرارة السطح الارض 2025.jpeg" alt="LST 2025" loading="lazy">
+                        <img src="img/analysis/LST_2025.jpeg" alt="LST 2025" loading="lazy">
                         <div class="map-card-footer">
                             <span class="map-year">2025</span>
                             <span class="map-range">28.4° — 64.4° C</span>
@@ -347,9 +347,7 @@
                     <div class="map-card glass-card" onclick="openLightbox(this)">
                         <img src="img/analysis/dem_alex.jpeg" alt="DEM Alexandria" loading="lazy">
                         <div class="map-card-footer"><span class="map-year">نموذج الارتفاع الرقمي (DEM)</span></div>
-=======
-    
-    <!-- GIS Analysis Encyclopedia Section -->
+
     <section id="gis-analysis" class="section analysis-bg">
         <div class="container">
             <div class="section-title text-center" data-aos="fade-up">
@@ -451,22 +449,13 @@
         </div>
     </section>
 
-<<<<<<< HEAD
     <!-- Lightbox Modal -->
     <div id="lightbox" class="lightbox-overlay" onclick="closeLightbox()">
         <button class="lightbox-close" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i></button>
         <img id="lightbox-img" src="" alt="">
     </div>
 
-=======
-    <!-- Lightbox Overlay -->
-    <div id="lightbox" class="lightbox-overlay" onclick="closeLightbox()">
-        <span class="close-lightbox">&times;</span>
-        <img class="lightbox-img" id="lightbox-img">
-        <div id="lightbox-caption"></div>
-    </div>
     <!-- Interactive Map Section -->
->>>>>>> 1344d8bcc529a7f3c3b54c0e6983634fd7263dad
     <section id="map-section" class="section map-bg">
         <div class="container">
             <div class="section-title text-center" data-aos="fade-up">
@@ -645,7 +634,6 @@
         window.API_BASE = 'https://carbon-backend-v11.vercel.app';
     </script>
     <!-- Custom JS -->
-<<<<<<< HEAD
     <script src="js/main.js?v=4"></script>
     <!-- GIS Analysis JS -->
     <script>
@@ -668,47 +656,6 @@
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') closeLightbox();
         });
-=======
-    <script src="js/main.js?v=4">
-    // GIS Analysis Tabs
-    function openTab(evt, tabName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tab-content");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-            tabcontent[i].classList.remove("active");
-        }
-        tablinks = document.getElementsByClassName("tab-btn");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].classList.remove("active");
-        }
-        document.getElementById(tabName).style.display = "block";
-        document.getElementById(tabName).classList.add("active");
-        evt.currentTarget.classList.add("active");
-    }
-
-    // Lightbox Logic
-    function openLightbox(src, caption) {
-        const lightbox = document.getElementById('lightbox');
-        const img = document.getElementById('lightbox-img');
-        const cap = document.getElementById('lightbox-caption');
-        
-        img.src = src;
-        cap.innerHTML = caption;
-        lightbox.style.display = 'flex';
-    }
-
-    function closeLightbox() {
-        document.getElementById('lightbox').style.display = 'none';
-    }
-
-    // Close on ESC
-    document.addEventListener('keydown', function(e) {
-        if (e.key === "Escape") {
-            closeLightbox();
-        }
-    });
->>>>>>> 1344d8bcc529a7f3c3b54c0e6983634fd7263dad
     </script>
 </body>
 </html>
