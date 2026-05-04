@@ -318,6 +318,38 @@ document.addEventListener('DOMContentLoaded', () => {
   initCharts();
 
   // -----------------------------
+  // 7.5) GIS Gallery Tabs
+  // -----------------------------
+  const initGallery = () => {
+    const tabBtns = document.querySelectorAll('.gallery-tab-btn');
+    const grids = document.querySelectorAll('.gallery-grid');
+
+    if (!tabBtns.length || !grids.length) return;
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Remove active from all tabs
+        tabBtns.forEach(b => b.classList.remove('active'));
+        // Add active to clicked tab
+        btn.classList.add('active');
+
+        const targetTab = btn.getAttribute('data-tab');
+
+        // Hide all grids, show target
+        grids.forEach(grid => {
+          if (grid.id === `tab-${targetTab}`) {
+            grid.classList.remove('hidden');
+          } else {
+            grid.classList.add('hidden');
+          }
+        });
+      });
+    });
+  };
+
+  initGallery();
+
+  // -----------------------------
   // 8) Leaflet Map + Hotspots (API)
   // -----------------------------
   const defaultHotspots = [
