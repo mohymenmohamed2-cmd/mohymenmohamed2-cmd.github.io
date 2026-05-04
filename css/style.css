@@ -1042,6 +1042,21 @@ footer {
 }
 .gallery-caption i { color: var(--neon-green); }
 
+/* Label ABOVE map image */
+.gallery-label {
+    padding: 8px 12px;
+    font-size: 0.82rem;
+    font-family: var(--font-ar);
+    font-weight: 600;
+    color: var(--neon-green);
+    background: rgba(16, 185, 129, 0.08);
+    border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+    text-align: center;
+    line-height: 1.4;
+}
+
+.gallery-card:hover { cursor: default; }
+
 /* ===================== Lightbox ===================== */
 .lightbox {
     display: none;
