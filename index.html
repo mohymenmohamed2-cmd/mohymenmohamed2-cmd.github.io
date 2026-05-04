@@ -570,7 +570,36 @@
         </div>
     </div>
 
+    <!-- ══ Lightbox Modal ══ -->
+    <div id="lightbox" onclick="if(event.target===this)closeLightbox()" style="
+        display:none;position:fixed;inset:0;z-index:9999;
+        background:rgba(0,0,0,0.92);
+        align-items:center;justify-content:center;
+        flex-direction:column;gap:14px;
+        backdrop-filter:blur(6px);
+    ">
+        <button onclick="closeLightbox()" style="
+            position:absolute;top:18px;right:24px;
+            background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);
+            color:#fff;font-size:1.4rem;width:40px;height:40px;border-radius:50%;
+            cursor:pointer;line-height:1;
+        ">✕</button>
+        <img id="lightbox-img" src="" alt="" style="
+            max-width:90vw;max-height:85vh;
+            border-radius:10px;
+            box-shadow:0 0 40px rgba(16,185,129,0.3);
+            object-fit:contain;
+        ">
+        <p id="lightbox-caption" style="color:#10b981;font-family:Cairo,sans-serif;font-size:0.9rem;margin:0;"></p>
+    </div>
+    <style>
+        #lightbox.open { display:flex !important; }
+        #lightbox img { animation: lbIn .25s ease; }
+        @keyframes lbIn { from{transform:scale(0.85);opacity:0} to{transform:scale(1);opacity:1} }
+    </style>
+
     <!-- Leaflet JS -->
+
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
     <!-- AOS JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -638,7 +667,9 @@
         function openLightbox(card) {
             var img = card.querySelector('img');
             if (!img) return;
+            var label = card.querySelector('.gallery-label');
             document.getElementById('lightbox-img').src = img.src;
+            document.getElementById('lightbox-caption').textContent = label ? label.textContent.trim() : '';
             document.getElementById('lightbox').classList.add('open');
             document.body.style.overflow = 'hidden';
         }
@@ -648,6 +679,23 @@
         }
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') closeLightbox();
+        });
+
+        // ── ربط كل كروت الخرائط بالـ Lightbox تلقائياً ──
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.gallery-card').forEach(function(card) {
+                card.style.cursor = 'pointer';
+                card.addEventListener('click', function() {
+                    openLightbox(card);
+                });
+            });
+            // أيضاً الكروت المميزة
+            document.querySelectorAll('.featured-card').forEach(function(card) {
+                card.style.cursor = 'pointer';
+                card.addEventListener('click', function() {
+                    openLightbox(card);
+                });
+            });
         });
     </script>
 </body>
