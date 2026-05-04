@@ -87,16 +87,10 @@ document.addEventListener('DOMContentLoaded', () => {
     AOS.init({ duration: 800, easing: 'ease-in-out', once: true, offset: 100 });
   }
 
-  const hideLoader = () => {
+  window.addEventListener('load', () => {
     toggleLoader(false);
     document.body.classList.remove('loading');
-  };
-  
-  if (document.readyState === 'complete') {
-    hideLoader();
-  } else {
-    window.addEventListener('load', hideLoader);
-  }
+  });
 
   // -----------------------------
   // 3) Navbar + Progress + BackToTop
@@ -257,10 +251,10 @@ document.addEventListener('DOMContentLoaded', () => {
       new Chart(sectorCtx, {
         type: 'doughnut',
         data: {
-          labels: ['صناعي وبترولي', 'نقل ومواصلات', 'موانئ وبحري', 'سكني وتجاري', 'طاقة وكهرباء', 'زراعي وحرق مخلفات'],
+          labels: ['صناعي وبترولي', 'نقل ومواصلات', 'موانئ وبحري', 'سكني وتجاري'],
           datasets: [{
-            data: [38, 22, 16, 11, 9, 4],
-            backgroundColor: ['#10b981', '#06b6d4', '#f59e0b', '#64748b', '#8b5cf6', '#ef4444'],
+            data: [48, 27, 14, 11],
+            backgroundColor: ['#10b981', '#06b6d4', '#f59e0b', '#64748b'],
             borderWidth: 2,
             borderColor: 'rgba(15,23,42,0.8)'
           }]
@@ -287,10 +281,10 @@ document.addEventListener('DOMContentLoaded', () => {
       new Chart(trendCtx, {
         type: 'line',
         data: {
-          labels: ['2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026 (توقع)'],
+          labels: ['2021', '2022', '2023', '2024', '2025', '2026'],
           datasets: [{
             label: 'انبعاثات CO2 (ألف طن)',
-            data: [21.4, 19.8, 18.2, 17.5, 16.8, 16.2, 15.5, 14.9],
+            data: [18.2, 17.5, 16.8, 16.2, 15.8, 15.4],
             borderColor: '#10b981',
             backgroundColor: 'rgba(16, 185, 129, 0.08)',
             fill: true,
@@ -327,18 +321,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // 8) Leaflet Map + Hotspots (API)
   // -----------------------------
   const defaultHotspots = [
-    { lat: 31.1820, lng: 29.8630, intensity: 0.95, name: 'محطة تحيا مصر (ميناء الإسكندرية - تلوث بحري)', co2: 5800, aqi: 195 },
-    { lat: 31.1180, lng: 29.8040, intensity: 0.92, name: 'شركة عز الدخيلة للصلب (صناعات ثقيلة)', co2: 5400, aqi: 185 },
-    { lat: 31.0980, lng: 29.8660, intensity: 0.88, name: 'شركة ميدور (تكرير البترول)', co2: 4800, aqi: 175 },
-    { lat: 31.1410, lng: 29.8370, intensity: 0.85, name: 'شركة الإسكندرية لأسمنت بورتلاند (انبعاثات غبار وCO2)', co2: 4600, aqi: 170 },
-    { lat: 31.0430, lng: 29.6580, intensity: 0.82, name: 'محطة كهرباء سيدي كرير 3 و 4 (حرق وقود أحفوري)', co2: 4200, aqi: 165 },
-    { lat: 31.1870, lng: 29.8730, intensity: 0.78, name: 'ترسانة الإسكندرية البحرية (صيانة وسفن)', co2: 3800, aqi: 155 },
-    { lat: 31.1380, lng: 29.8480, intensity: 0.75, name: 'الإسكندرية للتكرير والبتروكيماويات (ANRPC)', co2: 3500, aqi: 145 },
-    { lat: 31.0080, lng: 29.8420, intensity: 0.72, name: 'شركة البتروكيماويات المصرية (كيماويات دقيقة)', co2: 3200, aqi: 140 },
-    { lat: 31.2150, lng: 29.9960, intensity: 0.65, name: 'محطة كهرباء السيوف (شرق الإسكندرية)', co2: 2800, aqi: 130 },
-    { lat: 31.1380, lng: 29.8310, intensity: 0.60, name: 'شركة مصر لصناعة الكيماويات (مصانع المكس)', co2: 2400, aqi: 120 },
-    { lat: 31.1270, lng: 29.8310, intensity: 0.55, name: 'شركة المكس للملاحات (منطقة صناعية)', co2: 2100, aqi: 110 },
-    { lat: 31.2230, lng: 29.9940, intensity: 0.40, name: 'مصنع بسكو مصر (صناعات غذائية خفيفة)', co2: 1200, aqi: 85 }
+    { lat: 31.2156, lng: 29.9553, intensity: 0.95, name: 'ميناء الإسكندرية (تلوث بحري وصناعي)',   co2: 4850, aqi: 187 },
+    { lat: 31.1328, lng: 29.7997, intensity: 0.88, name: 'منطقة برج العرب الصناعية (عوادم مصانع)', co2: 4200, aqi: 172 },
+    { lat: 31.2333, lng: 29.9667, intensity: 0.65, name: 'محطة الرمل (كثافة مرورية عالية)',          co2: 2100, aqi: 128 },
+    { lat: 31.2667, lng: 30.0167, intensity: 0.28, name: 'حدائق المنتزه (متنفس طبيعي - هواء نقي)',  co2:  320, aqi:  42 },
+    { lat: 31.1500, lng: 29.9000, intensity: 0.78, name: 'منطقة العامرية (نشاط تكرير البترول)',      co2: 3100, aqi: 155 },
+    { lat: 31.3167, lng: 30.0667, intensity: 0.42, name: 'أبو قير (تلوث حراري متوسط)',               co2:  980, aqi:  88 }
   ];
 
   let currentHotspots = [];
@@ -371,9 +359,6 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const fetchHotspots = async () => {
-    // كود لحذف البيانات القديمة من متصفح المستخدم تلقائياً
-    localStorage.removeItem('gisHotspots');
-    
     try {
       const data = await apiFetch('/api/hotspots');
       return Array.isArray(data) ? data.map(normalizeHotspot) : [];
@@ -402,20 +387,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { attribution: '© OpenStreetMap contributors', maxZoom: 19 }
     );
 
-    const alexandriaBounds = [
-      [30.80, 29.50], // الجنوب الغربي (برج العرب)
-      [31.40, 30.20]  // الشمال الشرقي (أبو قير والبحر)
-    ];
-
-    map = L.map('map', { 
-      center: alexandriaCoords, 
-      zoom: 12, 
-      minZoom: 10,
-      maxBounds: alexandriaBounds,
-      maxBoundsViscosity: 1.0,
-      layers: [satelliteLayer], 
-      zoomControl: true 
-    });
+    map = L.map('map', { center: alexandriaCoords, zoom: 11, layers: [satelliteLayer], zoomControl: true });
     // إصلاح تأخر تحميل الخريطة على الموبايل
     setTimeout(() => map.invalidateSize(), 300);
     const layerControl = L.control.layers({ 'القمر الصناعي (ESRI)': satelliteLayer, 'شبكة الطرق (OSM)': osmRoadsLayer }).addTo(map);
@@ -424,51 +396,6 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch('data/industrial_zones.geojson')
       .then(res => res.json())
       .then(data => {
-        const industrialNames = {
-            '9082933': 'ميناء أبو قير', '9087657': 'عز الدخيلة للصلب', '9096637': 'بتروجاس', '9099261': 'شركة أنربك للبترول',
-            '9100121': 'مصنع النيل للزيوت', '9105840': 'مصر للألومنيوم', '9652335': 'الإسكندرية للبترول',
-            '13601671': 'ميناء هندسي', '13651334': 'ترسانة الإسكندرية', '13651335': 'ميناء الإسكندرية',
-            '93602398': 'تسهيلات سيدي كرير البترولية', '93602399': 'أليكس أباريلز للملابس',
-            '103072503': 'منطقة برج العرب الصناعية', '177901656': 'المصنع الحربي', '177909428': 'شركة النيل للكبريت',
-            '177909708': 'شركة الخميرة', '177921758': 'الزيوت المستخلصة', '179095435': 'أموك (للزيوت المعدنية)',
-            '179095437': 'مصر للبترول', '179095443': 'أنربك (تكرير)', '179097004': 'منطقة الدخيلة اللوجستية',
-            '352862333': 'البتروكيماويات المصرية', '352865112': 'ميدور (تكرير البترول)',
-            '445025446': 'عز الدخيلة للصلب', '477369360': 'مصانع النحاس المصرية', '477369361': 'مصانع النحاس المصرية',
-            '477369362': 'مصانع النحاس المصرية', '477369363': 'مصانع النحاس المصرية', '477369364': 'مصانع النحاس المصرية',
-            '477369365': 'مصانع النحاس المصرية', '477369366': 'مصانع النحاس المصرية', '477502001': 'شركة النحاس المصرية',
-            '477521971': 'شركة النقل والهندسة', '477521972': 'شركة النقل والهندسة', '477521973': 'شركة النقل والهندسة',
-            '479424487': 'محطة حاويات الدخيلة', '487437106': 'المصرية الألمانية للبورسلين', '492313757': 'الإخلاص للتوريدات الصناعية',
-            '493603533': 'مصر للبترول (زيوت)', '614249740': 'ميناء الدخيلة', '620949779': 'ASPC (بتروكيماويات)',
-            '620949780': 'ACPA (كيماويات)', '628090039': 'محطة كهرباء إيثيدكو', '628090041': 'مصنع بيريللي للإطارات',
-            '628090042': 'الإسكندرية لأسود الكربون', '628090043': 'محطة إيثيدكو للمرافق', '648364638': 'مصنع بسكو مصر',
-            '649591424': 'برج العرب للصناعة', '649591444': 'شركة الغرابلي للهندسة', '650674320': 'أجون بيوماس',
-            '650696475': 'شركة إنترمينت', '651523596': 'إيلاب (Elab)', '651541664': 'بتروجاس',
-            '654210890': 'المكس للملاحات', '654260057': 'أموك (Amok)', '654412996': 'بترومنت',
-            '654413013': 'أنربك (توسعات)', '654528125': 'طاقة للبترول', '654896968': 'كيرو جاس',
-            '654896972': 'التعاون للبترول', '669056917': 'صناعات البلاستيك والكهرباء', '694538809': 'أسمنت بورتلاند الإسكندرية',
-            '694538810': 'مصر لصناعة الكيماويات', '801424200': 'خلاطة خرسانة السلام', '801424205': 'مصنع إسكندرية للسكر',
-            '841703481': 'ألفا فروست', '841703482': 'هاندلينج سوليوشنز', '841703485': 'مصنع كوكاكولا',
-            '841703486': 'مصنع C H T', '841703487': 'المنصور للتصنيع', '841703488': 'روبيرد تكس',
-            '841703489': 'هيونداي موبيس', '841703493': 'ميدور', '841703494': 'ستار شاين (TMT)',
-            '841703498': 'A.A.C (سباكة سيارات)', '841703499': 'حديد المصريين (مرغم)', '841703503': 'TETCO للغزل',
-            '841730264': 'الشركة الشرقية (إيسترن كومباني)', '841730265': 'المطاحن العربية', '841730266': 'فاركو للأدوية',
-            '841730267': 'مطاحن وادي النيل', '841730268': 'العربية للمطاحن', '841730269': 'المصرية لاستخلاص الزيوت',
-            '841730270': 'أوشن فودز', '841730272': 'ليسيكو للخزف', '886791319': 'يارد ناتجاس',
-            '930414508': 'محطة سيدي كرير 3 و 4', '930498060': 'محطة سيدي كرير 1 و 2', '941579507': 'محطة السيوف للكهرباء'
-        };
-
-        const ignoredIds = ['28806296', '28826008', '809150140'];
-
-        if (data && data.features) {
-            data.features = data.features.filter(f => {
-                const id = String(f.properties.osm_id);
-                if (ignoredIds.includes(id)) return false;
-                if (!industrialNames[id]) return false; // Hide completely unknown/irrelevant polygons
-                f.properties.clean_name = industrialNames[id];
-                return true;
-            });
-        }
-
         const industrialLayer = L.geoJSON(data, {
           style: {
             color: '#f59e0b',
@@ -477,8 +404,8 @@ document.addEventListener('DOMContentLoaded', () => {
             fillOpacity: 0.2
           },
           onEachFeature: (feature, layer) => {
-            const name = feature.properties.clean_name;
-            if (name) {
+            const name = feature.properties.name || 'منطقة صناعية';
+            if (feature.properties.name) {
               layer.bindPopup(
                 `<div style="font-family:Cairo; font-size:14px; font-weight:bold; padding:4px 6px; direction:rtl;">${name}</div>`,
                 { maxWidth: 200 }
@@ -611,7 +538,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ]);
 
       const csv = [header, ...rows].map((r) => r.join(',')).join('\n');
-      const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+      const blob = new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
 
       const a = document.createElement('a');
@@ -669,9 +596,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // fallback local (للـ demo offline)
       const local = JSON.parse(localStorage.getItem('gisPosts') || 'null');
       const demo = Array.isArray(local) ? local : [
-        { id: 1, title: 'رصد ارتفاع حاد في انبعاثات منطقة برج العرب', date: new Date('2026-04-25').toISOString(), content: 'رصدت الخرائط الحرارية المحدثة ارتفاعاً بنسبة 14% في انبعاثات CO2 بمنطقة برج العرب الصناعية مقارنة بالربع الأول من 2025، ويُعزى ذلك لزيادة طاقة مصانع الأسمدة والبتروكيماويات.' },
-        { id: 2, title: 'تقرير: ميناء الإسكندرية الأعلى تلوثاً بالمحافظة', date: new Date('2026-04-18').toISOString(), content: 'أكد التحليل المكاني الجديد أن منطقة الميناء تتصدر قائمة البؤر الانبعاثية بـ 5,800 طن CO2 سنوياً، مع مؤشر AQI خطير يبلغ 195 نقطة.' },
-        { id: 3, title: 'مبادرة التشجير تخفض AQI في المنتزه بنسبة 8%', date: new Date('2026-04-10').toISOString(), content: 'أسفرت مبادرة تشجير الحدائق والكورنيش عن انخفاض ملموس في مؤشر جودة الهواء AQI بمنطقتي المنتزه وأبو قير.' }
+        { id: 1, title: 'بدء المرحلة الثانية من الرصد', date: new Date('2026-04-20').toISOString(), content: 'تم إطلاق المرحلة الثانية من جمع البيانات المكانية وتحليل بؤر الانبعاثات في المناطق الصناعية.' },
+        { id: 2, title: 'نتائج تحليل منطقة برج العرب', date: new Date('2026-04-15').toISOString(), content: 'أظهرت الخرائط الحرارية ارتفاعاً ملحوظاً في نسبة CO2 بمنطقة برج العرب الصناعية بنسبة 12% عن العام الماضي.' }
       ];
       renderPosts(demo);
     }
@@ -904,4 +830,91 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // -----------------------------
+  // 12) GIS Gallery Tabs
+  // -----------------------------
+  const galleryTabBtns = document.querySelectorAll('.gallery-tab-btn');
+  const galleryGrids   = document.querySelectorAll('.gallery-grid');
+
+  galleryTabBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const targetTab = btn.getAttribute('data-tab');
+
+      // Update active tab button
+      galleryTabBtns.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      // Show matching grid, hide others
+      galleryGrids.forEach((grid) => {
+        if (grid.id === `tab-${targetTab}`) {
+          grid.classList.remove('hidden');
+        } else {
+          grid.classList.add('hidden');
+        }
+      });
+    });
+  });
+
 });
+
+// =============================================
+// Lightbox (global scope – called via onclick)
+// =============================================
+let _lbImages = [];
+let _lbIndex  = 0;
+
+function openLightbox(card) {
+  const src     = card.getAttribute('data-src');
+  const caption = card.getAttribute('data-caption') || '';
+
+  // Build image list from current visible grid
+  const activeGrid = card.closest('.gallery-grid');
+  _lbImages = activeGrid
+    ? Array.from(activeGrid.querySelectorAll('.gallery-card')).map((c) => ({
+        src:     c.getAttribute('data-src'),
+        caption: c.getAttribute('data-caption') || '',
+      }))
+    : [{ src, caption }];
+
+  _lbIndex = _lbImages.findIndex((i) => i.src === src);
+  if (_lbIndex < 0) _lbIndex = 0;
+
+  _setLightboxImage(_lbIndex);
+
+  const lb = document.getElementById('lightbox');
+  if (lb) {
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeLightbox() {
+  const lb = document.getElementById('lightbox');
+  if (lb) {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+
+function lightboxNav(dir) {
+  _lbIndex = (_lbIndex + dir + _lbImages.length) % _lbImages.length;
+  _setLightboxImage(_lbIndex);
+}
+
+function _setLightboxImage(idx) {
+  const item    = _lbImages[idx];
+  const img     = document.getElementById('lightbox-img');
+  const caption = document.getElementById('lightbox-caption');
+  if (img)     img.src        = item.src;
+  if (caption) caption.textContent = item.caption;
+}
+
+// Keyboard navigation for lightbox
+document.addEventListener('keydown', (e) => {
+  const lb = document.getElementById('lightbox');
+  if (!lb || !lb.classList.contains('open')) return;
+  if (e.key === 'Escape')      closeLightbox();
+  if (e.key === 'ArrowRight')  lightboxNav(-1);
+  if (e.key === 'ArrowLeft')   lightboxNav(1);
+});
+
