@@ -326,37 +326,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!tabBtns.length || !tabContents.length) return;
 
-    // By default hide all except the active one
+    // Helper: force all cards inside a tab to be fully visible (kill AOS leftovers)
+    const forceVisible = (tabEl) => {
+      tabEl.querySelectorAll('[data-aos], .gallery-card, .gallery-grid, img').forEach(el => {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+        el.style.visibility = 'visible';
+        el.style.transition = 'none';
+        el.removeAttribute('data-aos');
+        el.removeAttribute('data-aos-delay');
+      });
+    };
+
+    // Setup initial state: show active, hide rest, kill AOS on all
     tabContents.forEach(content => {
-      if (!content.classList.contains('active')) {
+      if (content.classList.contains('active')) {
+        content.style.display = 'block';
+        forceVisible(content);
+      } else {
         content.style.display = 'none';
       }
     });
 
     tabBtns.forEach(btn => {
       btn.addEventListener('click', () => {
-        // Remove active from all tabs
         tabBtns.forEach(b => b.classList.remove('active'));
-        // Add active to clicked tab
         btn.classList.add('active');
 
         const targetTab = btn.getAttribute('data-tab');
 
-        // Hide all tab contents, show target
         tabContents.forEach(content => {
           if (content.id === `tab-${targetTab}`) {
             content.style.display = 'block';
             content.classList.add('active');
+            // Force visible immediately — kill any AOS opacity/transform
+            forceVisible(content);
           } else {
             content.style.display = 'none';
             content.classList.remove('active');
           }
         });
-
-        // Trigger AOS refresh to animate newly visible elements
-        if (window.AOS) {
-          setTimeout(() => AOS.refresh(), 50);
-        }
       });
     });
   };

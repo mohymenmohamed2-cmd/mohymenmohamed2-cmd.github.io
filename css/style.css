@@ -993,6 +993,17 @@ footer {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 15px;
 }
+
+/* Kill AOS interference on gallery — make cards always visible */
+.tab-content .gallery-card,
+.tab-content .gallery-grid,
+.tab-content img {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
 .tab-content:not(.active) { display: none; }
 .gallery-grid.hidden { display: none; }
 
