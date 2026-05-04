@@ -468,14 +468,14 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     };
 
-    // إضافة المصانع كـ markers على الخريطة
+    // إضافة المصانع كـ markers على الخريطة (markers عادية بدون كورات ملونة)
     const factoriesGroup = L.layerGroup();
     alexandriaFactories.forEach(f => {
-      const marker = L.marker([f.lat, f.lng], { icon: factoryIcon(f.type) });
+      const marker = L.marker([f.lat, f.lng]);
       marker.bindPopup(
         `<div style="font-family:Cairo;text-align:right;min-width:160px;">
-           <b style="font-size:13px;">${f.name}</b><br>
-           <span style="color:#f59e0b;">🏭 ${f.type}</span>
+           <b style="font-size:13px;">🏭 ${f.name}</b><br>
+           <span style="color:#f59e0b;">${f.type}</span>
          </div>`,
         { maxWidth: 220 }
       );
