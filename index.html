@@ -185,177 +185,143 @@
     <section id="gis-analysis" class="section bg-darker">
         <div class="container">
             <div class="section-title" data-aos="fade-up">
-                <h2><i class="fa-solid fa-map neon-text"></i> موسوعة التحليل المكاني</h2>
-                <p>دراسة جيو-مكانية معمقة باستخدام بيانات الأقمار الصناعية عبر ثلاثة عقود</p>
+                <h2><i class="fa-solid fa-satellite-dish neon-text"></i> أطلس الإسكندرية البيئي</h2>
+                <p>خرائط التحليل المكاني الشامل للمؤشرات البيئية عبر ثلاثة عقود (2005 — 2015 — 2025)</p>
             </div>
 
-            <!-- Two-column header -->
-            <div class="analysis-header" data-aos="fade-up">
-                <div class="analysis-method-card glass-card">
-                    <div class="method-icon"><i class="fa-solid fa-user-graduate"></i></div>
-                    <h3>التحليل الجغرافي المعمق</h3>
-                    <p>دراسة ميدانية وبحثية باستخدام برامج GIS المتخصصة (ArcGIS) لاستخلاص المؤشرات البيئية من بيانات الأقمار الصناعية</p>
-                </div>
-                <div class="analysis-vs">VS</div>
-                <div class="analysis-method-card glass-card">
-                    <div class="method-icon"><i class="fa-solid fa-microchip"></i></div>
-                    <h3>النمذجة الرقمية التفاعلية</h3>
-                    <p>تحويل مخرجات التحليل إلى منصة ذكية تفاعلية تعرض البيانات بشكل لحظي وتدعم اتخاذ القرار البيئي</p>
-                </div>
-            </div>
-
-            <!-- GALLERY: Kill AOS interference on all cards -->
+            <!-- All maps in one grid — no tabs -->
             <style>
                 #gis-analysis .gallery-card,
                 #gis-analysis .gallery-grid,
-                #gis-analysis .tab-content,
-                #gis-analysis img,
-                #gis-analysis [data-aos] {
+                #gis-analysis img {
                     opacity: 1 !important;
                     transform: none !important;
                     visibility: visible !important;
                     animation: none !important;
-                    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
                 }
-                #gis-analysis .tab-content { display: none; }
-                #gis-analysis .tab-content.active { display: block !important; }
             </style>
 
-            <!-- Tab Navigation -->
-            <div class="gallery-tabs" style="margin-bottom: 25px;">
-                <button class="gallery-tab-btn" data-tab="landuse"><i class="fa-solid fa-city"></i> استخدام الأراضي</button>
-                <button class="gallery-tab-btn" data-tab="ndvi"><i class="fa-solid fa-leaf"></i> الغطاء النباتي</button>
-                <button class="gallery-tab-btn" data-tab="lst"><i class="fa-solid fa-temperature-high"></i> درجة الحرارة</button>
-                <button class="gallery-tab-btn active" data-tab="emissions"><i class="fa-solid fa-smog"></i> الانبعاثات</button>
-            </div>
+            <div class="gallery-grid">
 
-            <!-- Tab: LST -->
-            <div id="tab-lst" class="tab-content">
-                <p class="tab-description">تُظهر هذه الخرائط تطور ظاهرة الجزر الحرارية الحضرية في الإسكندرية — اللون الأحمر يدل على ارتفاع شديد في الحرارة ناتج عن التوسع العمراني وزيادة الانبعاثات.</p>
-                <div class="gallery-grid">
-                    <div class="gallery-card glass-card">
-                        <div class="gallery-label">🌡️ درجة حرارة السطح — 2005</div>
-                        <img src="img/analysis/%D8%AF%D8%B1%D8%AC%D8%A9%20%D8%AD%D8%B1%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B3%D8%B7%D8%AD%20%D8%A7%D9%84%D8%A7%D8%B1%D8%B6%202005.jpeg" alt="LST 2005" loading="lazy">
-                    </div>
-                    <div class="gallery-card glass-card">
-                        <div class="gallery-label">🌡️ درجة حرارة السطح — 2015</div>
-                        <img src="img/analysis/%D8%AF%D8%B1%D8%AC%D8%A9%20%D8%AD%D8%B1%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B3%D8%B7%D8%AD%20%D8%A7%D9%84%D8%A7%D8%B1%D8%B6%202015.jpeg" alt="LST 2015" loading="lazy">
-                    </div>
-                    <div class="gallery-card glass-card">
-                        <div class="gallery-label">🌡️ درجة حرارة السطح — 2025</div>
-                        <img src="img/analysis/%D8%AF%D8%B1%D8%AC%D8%A9%20%D8%AD%D8%B1%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B3%D8%B7%D8%AD%20%D8%A7%D9%84%D8%A7%D8%B1%D8%B6%202025.jpeg" alt="LST 2025" loading="lazy">
-                    </div>
+                <!-- درجة حرارة السطح LST -->
+                <div class="gallery-card glass-card">
+                    <div class="gallery-label">🌡️ درجة حرارة السطح — 2005</div>
+                    <img src="img/analysis/%D8%AF%D8%B1%D8%AC%D8%A9%20%D8%AD%D8%B1%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B3%D8%B7%D8%AD%20%D8%A7%D9%84%D8%A7%D8%B1%D8%B6%202005.jpeg" alt="LST 2005" loading="lazy">
                 </div>
-            </div>
+                <div class="gallery-card glass-card">
+                    <div class="gallery-label">🌡️ درجة حرارة السطح — 2015</div>
+                    <img src="img/analysis/%D8%AF%D8%B1%D8%AC%D8%A9%20%D8%AD%D8%B1%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B3%D8%B7%D8%AD%20%D8%A7%D9%84%D8%A7%D8%B1%D8%B6%202015.jpeg" alt="LST 2015" loading="lazy">
+                </div>
+                <div class="gallery-card glass-card">
+                    <div class="gallery-label">🌡️ درجة حرارة السطح — 2025</div>
+                    <img src="img/analysis/%D8%AF%D8%B1%D8%AC%D8%A9%20%D8%AD%D8%B1%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B3%D8%B7%D8%AD%20%D8%A7%D9%84%D8%A7%D8%B1%D8%B6%202025.jpeg" alt="LST 2025" loading="lazy">
+                </div>
 
-            <!-- Tab: Emissions -->
-            <div id="tab-emissions" class="tab-content active">
-                <p class="tab-description">توزيع الغازات الدفيئة المختلفة (CO2e, CH4, N2O) عبر محافظة الإسكندرية — تُجسّد هذه الخرائط الأثر الكربوني التراكمي للنشاط الصناعي والمدني.</p>
-                <div class="gallery-grid">
-                    <div class="gallery-card glass-card">
-                        <div class="gallery-label">🏭 ثاني أكسيد الكربون CO₂e — 2005</div>
-                        <img src="img/analysis/co2e_2005.jpeg" alt="CO2e 2005" loading="lazy">
-                    </div>
-                    <div class="gallery-card glass-card">
-                        <div class="gallery-label">🏭 ثاني أكسيد الكربون CO₂e — 2015</div>
-                        <img src="img/analysis/co2e_2015.jpeg" alt="CO2e 2015" loading="lazy">
-                    </div>
-                    <div class="gallery-card glass-card">
-                        <div class="gallery-label">🏭 ثاني أكسيد الكربون CO₂e — 2025</div>
-                        <img src="img/analysis/co2e_2025.jpeg" alt="CO2e 2025" loading="lazy">
-                    </div>
-                    <div class="gallery-card glass-card">
-                        <div class="gallery-label">💨 غاز الميثان CH₄ — 2005</div>
-                        <img src="img/analysis/ch4_2005.jpeg" alt="CH4 2005" loading="lazy">
-                    </div>
-                    <div class="gallery-card glass-card">
-                        <div class="gallery-label">💨 غاز الميثان CH₄ — 2015</div>
-                        <img src="img/analysis/ch4_2015.jpeg" alt="CH4 2015" loading="lazy">
-                    </div>
-                    <div class="gallery-card glass-card">
-                        <div class="gallery-label">💨 غاز الميثان CH₄ — 2025</div>
-                        <img src="img/analysis/ch4_2025.jpeg" alt="CH4 2025" loading="lazy">
-                    </div>
-                    <div class="gallery-card glass-card">
-                        <div class="gallery-label">🌫️ أكسيد النيتروز N₂O — 2005</div>
-                        <img src="img/analysis/n2o_2005.jpeg" alt="N2O 2005" loading="lazy">
-                    </div>
-                    <div class="gallery-card glass-card">
-                        <div class="gallery-label">🌫️ أكسيد النيتروز N₂O — 2015</div>
-                        <img src="img/analysis/n2o_2015.jpeg" alt="N2O 2015" loading="lazy">
-                    </div>
-                    <div class="gallery-card glass-card">
-                        <div class="gallery-label">🌫️ ثاني أكسيد النيتروجين NO₂ — 2025</div>
-                        <img src="img/analysis/no2_2025.jpeg" alt="NO2 2025" loading="lazy">
-                    </div>
-                    <div class="gallery-card glass-card">
-                        <div class="gallery-label">🌍 البصمة الكربونية الإجمالية — 2005</div>
-                        <img src="img/analysis/carbon_footprint_2005.jpeg" alt="Carbon 2005" loading="lazy">
-                    </div>
-                    <div class="gallery-card glass-card">
-                        <div class="gallery-label">🌍 البصمة الكربونية الإجمالية — 2015</div>
-                        <img src="img/analysis/carbon_footprint_2015.jpeg" alt="Carbon 2015" loading="lazy">
-                    </div>
-                    <div class="gallery-card glass-card">
-                        <div class="gallery-label">🌍 البصمة الكربونية الإجمالية — 2025</div>
-                        <img src="img/analysis/carbon_footprint_2025.jpeg" alt="Carbon 2025" loading="lazy">
-                    </div>
+                <!-- CO2e -->
+                <div class="gallery-card glass-card">
+                    <div class="gallery-label">🏭 ثاني أكسيد الكربون CO₂e — 2005</div>
+                    <img src="img/analysis/co2e_2005.jpeg" alt="CO2e 2005" loading="lazy">
                 </div>
-            </div>
+                <div class="gallery-card glass-card">
+                    <div class="gallery-label">🏭 ثاني أكسيد الكربون CO₂e — 2015</div>
+                    <img src="img/analysis/co2e_2015.jpeg" alt="CO2e 2015" loading="lazy">
+                </div>
+                <div class="gallery-card glass-card">
+                    <div class="gallery-label">🏭 ثاني أكسيد الكربون CO₂e — 2025</div>
+                    <img src="img/analysis/co2e_2025.jpeg" alt="CO2e 2025" loading="lazy">
+                </div>
 
-            <!-- Tab: NDVI -->
-            <div id="tab-ndvi" class="tab-content">
-                <p class="tab-description">مؤشر الغطاء النباتي (NDVI) يقيس كثافة النباتات — اللون الأخضر يدل على غطاء نباتي صحي، بينما اللون الأصفر والبني يشير إلى تدهور المساحات الخضراء بسبب التوسع العمراني.</p>
-                <div class="gallery-grid">
-                    <div class="gallery-card glass-card">
-                        <div class="gallery-label">🌿 مؤشر الغطاء النباتي NDVI — 2005</div>
-                        <img src="img/analysis/ndvi2005.jpeg" alt="NDVI 2005" loading="lazy">
-                    </div>
-                    <div class="gallery-card glass-card">
-                        <div class="gallery-label">🌿 مؤشر الغطاء النباتي NDVI — 2015</div>
-                        <img src="img/analysis/ndvi2015.jpeg" alt="NDVI 2015" loading="lazy">
-                    </div>
-                    <div class="gallery-card glass-card">
-                        <div class="gallery-label">🌿 مؤشر الغطاء النباتي NDVI — 2025</div>
-                        <img src="img/analysis/ndvi2025.jpeg" alt="NDVI 2025" loading="lazy">
-                    </div>
-                    <div class="gallery-card glass-card">
-                        <div class="gallery-label">🏗️ مؤشر الكثافة العمرانية NDBI — 2005</div>
-                        <img src="img/analysis/ndbi2005.jpeg" alt="NDBI 2005" loading="lazy">
-                    </div>
-                    <div class="gallery-card glass-card">
-                        <div class="gallery-label">🏗️ مؤشر الكثافة العمرانية NDBI — 2025</div>
-                        <img src="img/analysis/ndbl2025.jpeg" alt="NDBI 2025" loading="lazy">
-                    </div>
-                    <div class="gallery-card glass-card">
-                        <div class="gallery-label">☀️ خريطة الإشعاع الشمسي</div>
-                        <img src="img/analysis/solar_radiation.jpeg" alt="Solar Radiation" loading="lazy">
-                    </div>
+                <!-- CH4 -->
+                <div class="gallery-card glass-card">
+                    <div class="gallery-label">💨 غاز الميثان CH₄ — 2005</div>
+                    <img src="img/analysis/ch4_2005.jpeg" alt="CH4 2005" loading="lazy">
                 </div>
-            </div>
+                <div class="gallery-card glass-card">
+                    <div class="gallery-label">💨 غاز الميثان CH₄ — 2015</div>
+                    <img src="img/analysis/ch4_2015.jpeg" alt="CH4 2015" loading="lazy">
+                </div>
+                <div class="gallery-card glass-card">
+                    <div class="gallery-label">💨 غاز الميثان CH₄ — 2025</div>
+                    <img src="img/analysis/ch4_2025.jpeg" alt="CH4 2025" loading="lazy">
+                </div>
 
-            <!-- Tab: Land Use -->
-            <div id="tab-landuse" class="tab-content">
-                <p class="tab-description">خرائط استخدام الأراضي توضح كيف تحولت مساحات شاسعة من الأراضي الزراعية والطبيعية إلى مناطق عمرانية وصناعية على مدار العقود الثلاثة الماضية.</p>
-                <div class="gallery-grid">
-                    <div class="gallery-card glass-card">
-                        <div class="gallery-label">🗺️ خريطة استخدام الأراضي — 2005</div>
-                        <img src="img/analysis/landuse2005.jpeg" alt="Land Use 2005" loading="lazy">
-                    </div>
-                    <div class="gallery-card glass-card">
-                        <div class="gallery-label">🗺️ خريطة استخدام الأراضي — 2015</div>
-                        <img src="img/analysis/landuse2015.jpeg" alt="Land Use 2015" loading="lazy">
-                    </div>
-                    <div class="gallery-card glass-card">
-                        <div class="gallery-label">🗺️ خريطة استخدام الأراضي — 2025</div>
-                        <img src="img/analysis/landuse2025.jpeg" alt="Land Use 2025" loading="lazy">
-                    </div>
-                    <div class="gallery-card glass-card">
-                        <div class="gallery-label">📐 نموذج الارتفاع الرقمي DEM — الإسكندرية</div>
-                        <img src="img/analysis/dem_alex.jpeg" alt="DEM Alexandria" loading="lazy">
-                    </div>
+                <!-- N2O / NO2 -->
+                <div class="gallery-card glass-card">
+                    <div class="gallery-label">🌫️ أكسيد النيتروز N₂O — 2005</div>
+                    <img src="img/analysis/n2o_2005.jpeg" alt="N2O 2005" loading="lazy">
                 </div>
-            </div>
+                <div class="gallery-card glass-card">
+                    <div class="gallery-label">🌫️ أكسيد النيتروز N₂O — 2015</div>
+                    <img src="img/analysis/n2o_2015.jpeg" alt="N2O 2015" loading="lazy">
+                </div>
+                <div class="gallery-card glass-card">
+                    <div class="gallery-label">🌫️ ثاني أكسيد النيتروجين NO₂ — 2025</div>
+                    <img src="img/analysis/no2_2025.jpeg" alt="NO2 2025" loading="lazy">
+                </div>
+
+                <!-- البصمة الكربونية -->
+                <div class="gallery-card glass-card">
+                    <div class="gallery-label">🌍 البصمة الكربونية الإجمالية — 2005</div>
+                    <img src="img/analysis/carbon_footprint_2005.jpeg" alt="Carbon 2005" loading="lazy">
+                </div>
+                <div class="gallery-card glass-card">
+                    <div class="gallery-label">🌍 البصمة الكربونية الإجمالية — 2015</div>
+                    <img src="img/analysis/carbon_footprint_2015.jpeg" alt="Carbon 2015" loading="lazy">
+                </div>
+                <div class="gallery-card glass-card">
+                    <div class="gallery-label">🌍 البصمة الكربونية الإجمالية — 2025</div>
+                    <img src="img/analysis/carbon_footprint_2025.jpeg" alt="Carbon 2025" loading="lazy">
+                </div>
+
+                <!-- NDVI -->
+                <div class="gallery-card glass-card">
+                    <div class="gallery-label">🌿 مؤشر الغطاء النباتي NDVI — 2005</div>
+                    <img src="img/analysis/ndvi2005.jpeg" alt="NDVI 2005" loading="lazy">
+                </div>
+                <div class="gallery-card glass-card">
+                    <div class="gallery-label">🌿 مؤشر الغطاء النباتي NDVI — 2015</div>
+                    <img src="img/analysis/ndvi2015.jpeg" alt="NDVI 2015" loading="lazy">
+                </div>
+                <div class="gallery-card glass-card">
+                    <div class="gallery-label">🌿 مؤشر الغطاء النباتي NDVI — 2025</div>
+                    <img src="img/analysis/ndvi2025.jpeg" alt="NDVI 2025" loading="lazy">
+                </div>
+
+                <!-- NDBI -->
+                <div class="gallery-card glass-card">
+                    <div class="gallery-label">🏗️ مؤشر الكثافة العمرانية NDBI — 2005</div>
+                    <img src="img/analysis/ndbi2005.jpeg" alt="NDBI 2005" loading="lazy">
+                </div>
+                <div class="gallery-card glass-card">
+                    <div class="gallery-label">🏗️ مؤشر الكثافة العمرانية NDBI — 2025</div>
+                    <img src="img/analysis/ndbl2025.jpeg" alt="NDBI 2025" loading="lazy">
+                </div>
+
+                <!-- استخدام الأراضي -->
+                <div class="gallery-card glass-card">
+                    <div class="gallery-label">🗺️ خريطة استخدام الأراضي — 2005</div>
+                    <img src="img/analysis/landuse2005.jpeg" alt="Land Use 2005" loading="lazy">
+                </div>
+                <div class="gallery-card glass-card">
+                    <div class="gallery-label">🗺️ خريطة استخدام الأراضي — 2015</div>
+                    <img src="img/analysis/landuse2015.jpeg" alt="Land Use 2015" loading="lazy">
+                </div>
+                <div class="gallery-card glass-card">
+                    <div class="gallery-label">🗺️ خريطة استخدام الأراضي — 2025</div>
+                    <img src="img/analysis/landuse2025.jpeg" alt="Land Use 2025" loading="lazy">
+                </div>
+
+                <!-- الإشعاع الشمسي + DEM -->
+                <div class="gallery-card glass-card">
+                    <div class="gallery-label">☀️ خريطة الإشعاع الشمسي</div>
+                    <img src="img/analysis/solar_radiation.jpeg" alt="Solar Radiation" loading="lazy">
+                </div>
+                <div class="gallery-card glass-card">
+                    <div class="gallery-label">📐 نموذج الارتفاع الرقمي DEM — الإسكندرية</div>
+                    <img src="img/analysis/dem_alex.jpeg" alt="DEM Alexandria" loading="lazy">
+                </div>
+
+            </div><!-- end gallery-grid -->
         </div>
     </section>
 
