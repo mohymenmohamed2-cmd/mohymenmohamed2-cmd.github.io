@@ -408,31 +408,107 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => map.invalidateSize(), 300);
     const layerControl = L.control.layers({ 'القمر الصناعي (ESRI)': satelliteLayer, 'شبكة الطرق (OSM)': osmRoadsLayer }).addTo(map);
 
-    // Load Industrial Zones GeoJSON
+    // ── المصانع والمنشآت الصناعية الحقيقية في الإسكندرية ──
+    const alexandriaFactories = [
+      { lat: 31.2001, lng: 29.8656, name: 'ميناء الإسكندرية', type: 'ميناء' },
+      { lat: 31.1333, lng: 29.8167, name: 'ميناء الدخيلة (Port of El Dekheila)', type: 'ميناء' },
+      { lat: 31.3167, lng: 30.0667, name: 'ميناء أبو قير البحري', type: 'ميناء' },
+      { lat: 31.1300, lng: 29.8100, name: 'شركة عز الدخيلة للصلب', type: 'مصنع صلب' },
+      { lat: 30.9167, lng: 29.5333, name: 'المنطقة الصناعية ببرج العرب', type: 'منطقة صناعية' },
+      { lat: 30.9500, lng: 29.6833, name: 'MIDOR — شركة التكرير الحديثة', type: 'مصفاة بترول' },
+      { lat: 30.9833, lng: 29.7667, name: 'منطقة العامرية الصناعية', type: 'منطقة صناعية' },
+      { lat: 31.2000, lng: 29.9100, name: 'مصر للبترول — الإسكندرية', type: 'مصفاة بترول' },
+      { lat: 30.8500, lng: 29.5833, name: 'محطة سيدي كرير للكهرباء', type: 'محطة طاقة' },
+      { lat: 31.1500, lng: 29.8500, name: 'شركة الإسكندرية للبترول والبتروكيماويات', type: 'بتروكيماويات' },
+      { lat: 31.1400, lng: 29.7900, name: 'مصنع مصر للألومنيوم', type: 'مصنع معادن' },
+      { lat: 31.2100, lng: 29.9300, name: 'شركة النيل للزيوت والكيماويات', type: 'كيماويات' },
+      { lat: 31.1800, lng: 29.8400, name: 'شركة ACPA (الإسكندرية لمواد البناء)', type: 'مواد بناء' },
+      { lat: 30.9700, lng: 29.7200, name: 'Pirelli Egypt — مصنع الإطارات', type: 'مصنع' },
+      { lat: 31.2050, lng: 29.9200, name: 'شركة بسكو مصر للأغذية', type: 'صناعات غذائية' },
+      { lat: 31.2150, lng: 29.9450, name: 'الشركة المصرية الألمانية للبورسلين', type: 'مصنع' },
+      { lat: 31.1200, lng: 29.7800, name: 'ETHYDCO — شركة إيثيدكو للبتروكيماويات', type: 'بتروكيماويات' },
+      { lat: 31.0500, lng: 29.7300, name: 'El-Siuf Power Plant — محطة السيوف', type: 'محطة طاقة' },
+      { lat: 31.2250, lng: 29.9550, name: 'شركة الإسكندرية للأدوية والكيماويات', type: 'صناعات دوائية' },
+      { lat: 30.8700, lng: 29.5700, name: 'Sidi Krir Combined Cycle Power Plant', type: 'محطة طاقة' },
+      { lat: 31.1600, lng: 29.8600, name: 'ترسانة الإسكندرية (Alexandria Shipyard)', type: 'حوض سفن' },
+      { lat: 31.1050, lng: 29.7600, name: 'الإسكندرية لأسود الكربون', type: 'مصنع كيماويات' },
+      { lat: 31.0800, lng: 29.7500, name: 'El Ameriya Refinery — مصفاة العامرية', type: 'مصفاة بترول' },
+      { lat: 31.2300, lng: 29.9600, name: 'شركة مصانع النحاس المصرية', type: 'مصنع معادن' },
+    ];
+
+    const factoryIcon = (type) => {
+      const colors = {
+        'مصفاة بترول':   '#ef4444',
+        'بتروكيماويات':  '#f97316',
+        'محطة طاقة':     '#eab308',
+        'مصنع صلب':      '#6366f1',
+        'منطقة صناعية': '#8b5cf6',
+        'ميناء':         '#3b82f6',
+        'مصنع معادن':   '#14b8a6',
+        'كيماويات':      '#f43f5e',
+        'مواد بناء':     '#a78bfa',
+        'مصنع':          '#fb923c',
+        'صناعات غذائية':'#22c55e',
+        'صناعات دوائية':'#06b6d4',
+        'حوض سفن':       '#0ea5e9',
+        'مصنع كيماويات':'#e879f9',
+      };
+      const c = colors[type] || '#94a3b8';
+      return L.divIcon({
+        className: '',
+        html: `<div style="
+          width:14px;height:14px;
+          background:${c};
+          border:2px solid #fff;
+          border-radius:50%;
+          box-shadow:0 0 6px ${c};
+        "></div>`,
+        iconSize: [14, 14],
+        iconAnchor: [7, 7]
+      });
+    };
+
+    // إضافة المصانع كـ markers على الخريطة
+    const factoriesGroup = L.layerGroup();
+    alexandriaFactories.forEach(f => {
+      const marker = L.marker([f.lat, f.lng], { icon: factoryIcon(f.type) });
+      marker.bindPopup(
+        `<div style="font-family:Cairo;text-align:right;min-width:160px;">
+           <b style="font-size:13px;">${f.name}</b><br>
+           <span style="color:#f59e0b;">🏭 ${f.type}</span>
+         </div>`,
+        { maxWidth: 220 }
+      );
+      factoriesGroup.addLayer(marker);
+    });
+    factoriesGroup.addTo(map);
+    layerControl.addOverlay(factoriesGroup, '🏭 المصانع والمنشآت الصناعية');
+
+    // Load Industrial Zones GeoJSON (polygons)
     fetch('data/industrial_zones.geojson')
       .then(res => res.json())
       .then(data => {
         const industrialLayer = L.geoJSON(data, {
           style: {
             color: '#f59e0b',
-            weight: 2,
+            weight: 1.5,
             fillColor: '#f59e0b',
-            fillOpacity: 0.2
+            fillOpacity: 0.15
           },
           onEachFeature: (feature, layer) => {
             const name = feature.properties.name || 'منطقة صناعية';
-            if (feature.properties.name) {
+            if (name) {
               layer.bindPopup(
-                `<div style="font-family:Cairo; font-size:14px; font-weight:bold; padding:4px 6px; direction:rtl;">${name}</div>`,
+                `<div style="font-family:Cairo;font-size:13px;font-weight:bold;padding:4px 6px;direction:rtl;">${name}</div>`,
                 { maxWidth: 200 }
               );
             }
           }
         });
-        layerControl.addOverlay(industrialLayer, 'المناطق الصناعية (OSM)');
-        industrialLayer.addTo(map); // Show by default
+        layerControl.addOverlay(industrialLayer, '🗺️ حدود المناطق الصناعية');
+        industrialLayer.addTo(map);
       })
-      .catch(err => console.error('Failed to load industrial zones:', err));
+      .catch(err => console.warn('industrial_zones.geojson not loaded:', err));
   }
 
   const clearHotspotLayers = () => {
