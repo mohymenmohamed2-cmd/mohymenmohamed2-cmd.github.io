@@ -564,6 +564,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // first load hotspots
   (async () => {
     const spots = await fetchHotspots();
+    // Sort spots from highest emissions (CO2) to lowest
+    spots.sort((a, b) => (b.co2 || 0) - (a.co2 || 0));
     renderHotspots(spots);
   })();
 
